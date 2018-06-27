@@ -6,6 +6,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # Canard roles_mask
       t.integer :roles_mask
 
+      # User Type, used for Single Table Inheritance
+      t.string :type
+
       # User attributes
       t.string :first_name
       t.string :last_name

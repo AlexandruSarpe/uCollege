@@ -1,6 +1,20 @@
 - if user_signed_in?
+  ="Welcome #{current_user.first_name}, you are logged in as a #{current_user.type}"
+  %br
   = link_to 'Logout', destroy_user_session_path, method: :delete
 - else
-  = link_to 'Sign Up', new_user_registration_path
+  %h2 Sign Up
   %br
-  = link_to 'Login', new_user_session_path
+  = link_to 'Sign Up as a Student', new_student_registration_path
+  %br
+  = link_to 'Sign Up as a Secretary', new_secretary_registration_path
+  %br
+  = link_to 'Sign Up as a Canteen', new_canteen_registration_path
+  %br
+  %h2 Log In
+  %br
+  = link_to 'Login as a Student', new_student_session_path
+  %br
+  = link_to 'Login as a Secretary', new_secretary_session_path
+  %br
+  = link_to 'Login as a Canteen', new_canteen_session_path
