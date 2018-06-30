@@ -1,7 +1,22 @@
-<h2>Sign up</h2>
+<% if user_signed_in? %>
+  <h2> Create User </h2>
+<% else %>
+  <h2> Sign Up</h2>
+<% end %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+
+  Account Type:
+  <% if user_signed_in? && current_user.type == 'Secretary' %>
+    <div class="field">
+      <%= f.select(:type, options_for_select(%w(Secretary Canteen Student), 'Student')) %><br/>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= f.select(:type, options_for_select(%w(Student), 'Student')) %><br/>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :first_name %><br/>
@@ -35,10 +50,16 @@
     <%= f.label :password_confirmation %><br/>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  <% if user_signed_in? %>
+    <div class="actions">
+      <%= f.submit "Create User" %>
+    </div>
+  <% else %>
+    <div class="actions">
+      <%= f.submit "Sign up" %>
+    </div>
+  <% end %>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<% unless user_signed_in? %>
+  <%= render "devise/shared/links" %>
+<% end %>

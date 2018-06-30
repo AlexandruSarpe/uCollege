@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :students
-  devise_for :canteens
-  devise_for :secretaries
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # devise users method
+  devise_for :users, path: 'users', controllers: {
+      sessions: 'users/sessions', registrations: 'users/registrations'
+  }, path_prefix: 'new'
+  # making /dashboard the root for authenticated users
+  authenticated :user do
+    root 'dashboard#index', as: :authenticated_root
+  end
+  # root for non authenticated users
+  root 'home#index'
 
-  resources :home
-  root to: redirect('/home')
+  # users managing methods
+  resources :users, only: %i[index show edit destroy update]
 end

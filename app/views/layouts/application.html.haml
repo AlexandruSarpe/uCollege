@@ -9,7 +9,7 @@
 
   %body
     -if flash[:notice]
-      = flash.notice
+      = flash[:notice]
     -elsif flash[:warning]
-      =flash.warning
+      = flash[:warning]
     = yield
