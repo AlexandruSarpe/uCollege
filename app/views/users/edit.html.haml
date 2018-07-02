@@ -1,0 +1,16 @@
+%h2 "Edit #{@user.username}'s info"
+
+= form_tag user_path(@user), method: :put do
+  = label :user, :first_name
+  = text_field :user, :first_name
+  %br
+  = label :user,:last_name
+  = text_field :user,:last_name
+  %br
+  = label :user,:username
+  = text_field :user,:username
+  %br
+  = label :user,:email
+  = email_field :user,:email
+  %br
+  = submit_tag 'Update User'

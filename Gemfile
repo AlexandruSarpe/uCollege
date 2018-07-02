@@ -39,6 +39,14 @@ gem 'database_cleaner'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'devise'
+
+gem 'haml'
+
+gem 'canard', '~> 0.5.0.pre'
+
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution

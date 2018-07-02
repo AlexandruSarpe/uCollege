@@ -1,0 +1,19 @@
+%h1 All Users
+
+%table#users
+  = link_to 'Register another User', new_user_registration_path
+  %thead
+    %tr
+      %th Username
+      %th Type
+      %th About
+      %th Edit
+      %th Delete
+  %tbody
+    - @users.each do |user|
+      %tr
+        %th= user.username
+        %th= user.type
+        %th= link_to "More about #{user.username}", user_path(user)
+        %th= link_to "Edit #{user.username}", edit_user_path(user)
+        %th= link_to "Delete #{user.username}", user_path(user), :method => :delete

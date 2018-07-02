@@ -1,0 +1,15 @@
+!!! 5
+%html
+  %head
+    %title UCollege
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body
+    -if flash[:notice]
+      = flash[:notice]
+    -elsif flash[:warning]
+      = flash[:warning]
+    = yield
