@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   include Accessible
-  skip_before_action :check_user, only: %i[new create edit update]
+  skip_before_action :check_user, only: %i[new create edit update destroy]
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   skip_before_action :require_no_authentication, only: %i[new create]
@@ -15,8 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     # only secreatery user can create other types of users
-    sign_up_params.type = 'Student' unless user_signed_in? && current_user.type == 'Secretary'
-    flash[:notice] = sign_up_params
+    sign_up_params[:type] = 'Student' unless user_signed_in? && current_user.type == 'Secretary'
     build_resource(sign_up_params)
     resource.save
     # if we are a secretary user creating a user we can't login with the newly created user

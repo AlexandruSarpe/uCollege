@@ -30,3 +30,6 @@
 /config/master.key
 # ignore RubyMine config directory
 /.idea
+
+# Ignore application configuration
+/config/application.yml

@@ -38,13 +38,20 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# authentication manager
 gem 'devise'
 
+# alternative to erb to create dynamic web pages
 gem 'haml'
 
+#authorization manager
 gem 'canard', '~> 0.5.0.pre'
-
+#Google OAuth strategy
 gem 'omniauth-google-oauth2'
+
+# setting un enviroment variables securely
+# in application.yml which is gitignored
+gem 'figaro'
 
 group :development, :test do
   gem 'rspec-rails'
