@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  include Accessible
-  skip_before_action :check_user, only: %i[new create edit update destroy]
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   skip_before_action :require_no_authentication, only: %i[new create]
@@ -12,15 +10,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def show
+    @user = User.find(params[:id])
+    authorize! :read, @user.type.to_sym
+  end
+
   # POST /resource
   def create
-    # only secreatery user can create other types of users
+    # only secretary user can create other types of users
     sign_up_params[:type] = 'Student' unless user_signed_in? && current_user.type == 'Secretary'
     build_resource(sign_up_params)
+    authorize! :create, sign_up_params[:type].to_sym,
+               message: "You can't create a new #{sign_up_params[:type]}!"
     resource.save
     # if we are a secretary user creating a user we can't login with the newly created user
     if user_signed_in?
-      # flash[:notice] = 'Successfully created a new user'
+      flash[:notice] = "Successfully created a new #{sign_up_params[:type]}"
       redirect_to authenticated_root_path
       return
     end
@@ -49,11 +54,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
+    authorize! :update, resource.type.to_sym, message: "You can\'t modify this user info!"
     super
   end
 
   # DELETE /resource
   def destroy
+    authorize! :destroy, resource.type.to_sym, message: "You can\'t delete this user!"
     super
   end
 

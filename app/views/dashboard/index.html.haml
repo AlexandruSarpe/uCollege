@@ -3,5 +3,5 @@
 - if current_user.type == 'Secretary'
   = link_to 'List Users', users_path
 
-= link_to "About  #{current_user.username}", user_path(current_user)
+= link_to "About  #{current_user.username}", "/new/user/#{current_user.id}"
 = link_to 'Log Out', destroy_user_session_path, method: :delete

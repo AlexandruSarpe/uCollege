@@ -1,0 +1,16 @@
+%h2 Details about #{@user.username}
+%ul#details
+  %li
+    First Name:
+    = @user.first_name
+  %li
+    Last Name:
+    = @user.last_name
+  %li
+    Username:
+    = @user.username
+  %li
+    Email:
+    = @user.email
+= link_to "Edit #{@user.username}'s info", edit_user_registration_path(@user)
+= link_to "Delete #{@user.username}'s account", registration_path(@user), :method => :delete

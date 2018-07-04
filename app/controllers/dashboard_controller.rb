@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
-  #authorize_resource
+  before_action :authenticate_user!
+
   def index;
   end
 end
