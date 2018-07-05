@@ -14,3 +14,4 @@
     = @user.email
 = link_to "Edit #{@user.username}'s info", edit_user_registration_path(@user)
 = link_to "Delete #{@user.username}'s account", registration_path(@user), :method => :delete
+= link_to 'Back', authenticated_root_path

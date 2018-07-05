@@ -10,28 +10,29 @@ class UsersController < ApplicationController
 
   # showing user profile page
   def show
-    authorize! :read, :Secretary, :User, :Canteen
     @user = User.find(params[:id])
+    authorize! :read, @user.type.to_sym
   end
 
   # deleting a user
   def destroy
-    authorize! :destroy, :Secretary, :User, :Canteen
-    User.find(params[:id]).destroy
+    @user = User.find(params[:id])
+    authorize! :destroy, @user.type.to_sym
+    @user.destroy
     flash[:notice] = 'User deleted'
     redirect_to users_path
   end
 
   # editing a user
   def edit
-    authorize! :update, :Secretary, :User, :Canteen
     @user = User.find(params[:id])
+    authorize! :update, @user.type.to_sym
   end
 
   # updating a user
   def update
-    authorize! :update, :Secretary, :User, :Canteen
     @user = User.find(params[:id])
+    authorize! :update, @user.type.to_sym
     data = params.require(:user).permit(:first_name, :last_name, :username, :email)
     res = @user.update(data)
     if res

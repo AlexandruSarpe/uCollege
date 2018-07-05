@@ -1,0 +1,36 @@
+%h1 All Courses
+
+= link_to 'Create a new Course', new_course_path
+
+%h3 Current Courses
+%table#current_courses
+  %thead
+    %tr
+      %th Name
+      %th Type
+      %th Year
+      %th About
+  %tbody
+    - @current_courses.each do |course|
+      %tr
+        %th= course.name
+        %th= course.course_type
+        %th= "#{course.begin_year}/#{course.end_year}"
+        %th= link_to "More about #{course.name}", course_path(course)
+
+%h3 Other Courses
+%table#other_courses
+  %thead
+    %tr
+      %th Name
+      %th Type
+      %th Year
+      %th About
+  %tbody
+    - @other_courses.each do |course|
+      %tr
+        %th= course.name
+        %th= course.course_type
+        %th= "#{course.begin_year}/#{course.end_year}"
+        %th= link_to "More about #{course.name}", course_path(course)
+= link_to 'Back to Dashboard', authenticated_root_path

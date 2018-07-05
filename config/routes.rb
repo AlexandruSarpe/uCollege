@@ -18,4 +18,7 @@ Rails.application.routes.draw do
 
   # users managing methods
   resources :users, only: %i[index show edit destroy update]
+
+  # courses managing methods
+  resources :courses
 end

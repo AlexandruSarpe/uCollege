@@ -1,0 +1,17 @@
+%h2 Details about #{@course.name}
+%ul#details
+  %li
+    Name:
+    = @course.name
+  %li
+    Year:
+    = "#{@course.begin_year}/#{@course.end_year}"
+  %li
+    Type:
+    = @course.course_type
+- # if this page is shown to the a Secretary
+- if current_user.instance_of? Secretary
+  = link_to "Edit #{@course.name}", edit_course_path(@course)
+  = link_to "Delete #{@course.name}", course_path(@course), :method => :delete
+
+= link_to 'Back to courses list', courses_path

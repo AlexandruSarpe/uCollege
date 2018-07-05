@@ -1,0 +1,16 @@
+%h2 Create a new Course
+
+= form_for @course, url: courses_path, html: { method: :post } do |f|
+  = f.label :name
+  = f.text_field :name
+  %br
+  = f.number_field :begin_year,min: 1974
+  /
+  = f.number_field :end_year,min: 1975
+  %br
+  = f.label :course_type
+  = f.select(:course_type, options_for_select(%w(Preparatory Bachelor Master Seminar)))
+  %br
+  = f.submit 'Create course'
+
+= link_to 'Back to courses list', courses_path

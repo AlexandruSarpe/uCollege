@@ -1,7 +1,13 @@
 %h2 #{current_user.username}'s Dashboard
 
-- if current_user.type == 'Secretary'
-  = link_to 'List Users', users_path
+- if current_user.instance_of? Secretary
+  = link_to 'Manage Users', users_path
+  %br
+  = link_to 'Manage Courses', courses_path
+- if current_user.instance_of? Student
+  = link_to 'Courses', courses_path
 
+%br
 = link_to "About  #{current_user.username}", "/new/user/#{current_user.id}"
+%br
 = link_to 'Log Out', destroy_user_session_path, method: :delete
