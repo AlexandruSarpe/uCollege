@@ -1,0 +1,20 @@
+%h1 Students enrolled in #{@course.name} #{@course.begin_year}/#{@course.end_year}
+
+= link_to 'Add a student', 'enrollment'
+
+%h3 Students
+%table
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th Dropout
+  %tbody
+    - @students.each do |student|
+      %tr
+        %th= student.first_name
+        %th= student.last_name
+        %th= link_to "Dropout #{student.first_name} #{student.last_name}", "enrollment/#{student.id}", method: :delete
+
+
+= link_to "Back", course_path(@course)

@@ -6,7 +6,7 @@ Canard::Abilities.for(:secretary) do
   can :crud, :Student
   can :crud, :Canteen
   can :crud, :Secretary
+  can %i[read update delete], :Enrollment
   # TODO: check these permissions when the corresponding model will be created
   can :crud, :Event, official: true
-
 end

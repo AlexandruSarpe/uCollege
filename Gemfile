@@ -44,9 +44,9 @@ gem 'devise'
 # alternative to erb to create dynamic web pages
 gem 'haml'
 
-#authorization manager
+# authorization manager
 gem 'canard', '~> 0.5.0.pre'
-#Google OAuth strategy
+# Google OAuth strategy
 gem 'omniauth-google-oauth2'
 
 # setting un enviroment variables securely

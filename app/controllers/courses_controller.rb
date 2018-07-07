@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# noinspection RailsParamDefResolve
 class CoursesController < ApplicationController
+  # noinspection RailsParamDefResolve
   before_action :authenticate_user!
 
   def index

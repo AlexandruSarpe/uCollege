@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# noinspection ALL
 class UsersController < ApplicationController
   before_action :authenticate_user!
   # showing user list

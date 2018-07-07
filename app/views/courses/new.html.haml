@@ -4,9 +4,9 @@
   = f.label :name
   = f.text_field :name
   %br
-  = f.number_field :begin_year,min: 1974
+  = f.number_field :begin_year,min: 1974, max: Time.now.year
   /
-  = f.number_field :end_year,min: 1975
+  = f.number_field :end_year,min: 1975,max: Time.now.year
   %br
   = f.label :course_type
   = f.select(:course_type, options_for_select(%w(Preparatory Bachelor Master Seminar)))

@@ -81,6 +81,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # If you have extra params to permit, append them to the sanitizer.
+  # noinspection RubyInstanceMethodNamingConvention
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name username])
   end
