@@ -20,5 +20,10 @@ Rails.application.routes.draw do
   resources :users, only: %i[index show edit destroy update]
 
   # courses managing methods
-  resources :courses
+  resources :courses do
+    resources :enrollments, only: :index
+    get 'enrollment', to: 'enrollments#show'
+    post 'enrollment/:id', to: 'enrollments#add'
+    delete 'enrollment/:id', to: 'enrollments#destroy'
+  end
 end
