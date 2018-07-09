@@ -1,0 +1,22 @@
+%h1 All Books
+
+%table#books
+  %thead
+    %tr
+      %th Book Title
+      %th Book Author
+      %th Owner
+      %th Current Owner
+      %th More Info
+  %tbody
+    - @books.each do |book|
+      %tr
+        %td= book.title
+        %td= book.author
+        %td= Student.find(book.owner_id).first_name
+        %td= Student.find(book.current_owner_id).first_name
+        %td= link_to "More about #{book.title}", book_path(book)
+
+
+= link_to 'Add book', new_book_path
+= link_to "Homepage" , root_path

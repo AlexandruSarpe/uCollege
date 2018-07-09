@@ -1,0 +1,6 @@
+= simple_form_for @book do |f|
+  = f.input :title, label: "Title of the book"
+  = f.input :description, label: "Description"
+  = f.input :author , label: "Author"
+  = submit_tag "Save"
+  = link_to 'Cancel' , :back

@@ -4,8 +4,8 @@ Feature: I want to create a new book
   so that I can share it
 
 Scenario: create a book
-  Given I am on the books page
-  When I click on "add a book"
-  Given I am on the books creation page
-  When I add the information and click on "add book"
+  Given I am an authenticated user
+  And I am on the books page
+  When I click on "Add book"
+  And I add the information and click on "Save"
   Then I should go to the books page and see the new book added

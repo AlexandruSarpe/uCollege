@@ -9,7 +9,20 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 2018_06_25_153005) do
+
+ActiveRecord::Schema.define(version: 2018_07_03_153114) do
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "author"
+    t.integer "owner_id"
+    t.integer "current_owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["current_owner_id"], name: "index_books_on_current_owner_id"
+    t.index ["owner_id"], name: "index_books_on_owner_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.integer "roles_mask"
@@ -31,17 +44,6 @@ ActiveRecord::Schema.define(version: 2018_06_25_153005) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "author"
-    t.string "owner"
-    t.string "current_owner"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

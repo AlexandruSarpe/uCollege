@@ -1,0 +1,27 @@
+%h2 Details about #{@book.title}
+
+%ul#details
+	%li
+		Author:
+		= @book.author
+	%li
+		Owner:
+		= Student.find(@book.owner_id).first_name
+	%li
+		Current Owner:
+		= Student.find(@book.current_owner_id).first_name
+
+
+%h3 Description:
+
+%p#description= @book.description
+
+#{link_to 'Edit info', edit_book_path(@book)}
+- if current_user.id == @book.owner_id
+	= link_to 'Delete', book_path(@book), :method => :delete
+#{link_to 'Back to Books list', books_path}
+- if @book.owner_id == @book.current_owner_id && @book.current_owner_id != current_user.id
+	= link_to 'Borrow' ,  borrow_book_path(@book) , :method => :post
+
+- if current_user.id == @book.current_owner_id
+	= link_to 'Return',  returnbook_book_path(@book) ,  :method => :post
