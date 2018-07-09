@@ -8,4 +8,4 @@ Scenario: borrow a book
   Given There is at least one listed book that I'm not the current owner of that book
   When I look at the information of the first listed book that I'm not the current owner
   And I click on "Borrow"
-  Then I should see my name as the current owner of that book
+  Then I should be the current owner of that book

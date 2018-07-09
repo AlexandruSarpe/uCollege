@@ -26,12 +26,10 @@ And("I add the information and click on {string}") do |string|
   fill_in "book_author", :with => author
   fill_in "book_description", :with => description
   click_on string
-
-  visit books_path
-  expect(page).to have_content("libro5")
 end
 
-Then("I should go to the books page and see the new book added") do
-  visit books_path
-  expect(page).to have_content("libro5")
+Then("The book should be created") do
+  title = "libro5"
+  @book = Book.where(["title = ?", title]).first
+  expect(@book).to_not be(nil)
 end

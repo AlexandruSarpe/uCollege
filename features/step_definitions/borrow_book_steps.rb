@@ -23,6 +23,8 @@ Given("There is at least one listed book that I'm not the current owner of that 
   Student.new(:email => email, :password => password, :password_confirmation => password).save!
   @student = Student.where(["email = ?", email]).first
   Book.new( :title => title,  :description => description, :author => author,  :owner_id => @student.id , :current_owner_id => @student.id).save!
+  @book = Book.where(["title = ?", title]).first
+  @book.update(:owner_id => @student.id , :current_owner_id => @student.id)
 end
 
 When("I look at the information of the first listed book that I'm not the current owner") do
@@ -35,9 +37,10 @@ And("I click on {string} ") do |string|
   click_on string
 end
 
-Then("I should see my name as the current owner of that book") do
+Then("I should be the current owner of that book") do
   title = "libro6"
+  email = "prova2@email.com"
   @book = Book.where(["title = ?", title]).first
-  visit book_path(@book)
-  expect(page).to have_content("prova2")
+  @student2 = Student.where(["email = ?", email]).first
+  expect(@book.current_owner_id).to eq(@student2.id)
 end
