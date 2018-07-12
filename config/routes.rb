@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   authenticated :user do
     root 'dashboard#index', as: :authenticated_root
     resources :books
-    post '/books/:id/borrow', to: 'books#borrow' , as: "borrow_book"
-    post '/books/:id/returnbook', to: 'books#returnbook', as: "returnbook_book"
+    post '/books/:id/borrow', to: 'books#borrow', as: 'borrow_book'
+    post '/books/:id/returnbook', to: 'books#returnbook', as: 'returnbook_book'
     # users managing methods used by secretaries
     resources :users, only: %i[index show edit destroy update]
 
@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/auth/google_oauth2/callback', to: 'omniauth_callbacks#google_oauth2'
+  get 'auth/failure', to: 'omniauth_callbacks#failure'
 end

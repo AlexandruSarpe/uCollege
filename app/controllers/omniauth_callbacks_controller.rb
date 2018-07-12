@@ -9,7 +9,7 @@ class OmniauthCallbacksController < ApplicationController
 
     if @user.persisted?
       flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Google'
-      session[:user_id]=@user.id
+      session[:user_id] = @user.id
       sign_in_and_redirect @user, event: :authentication
     else
       # Removing extra as it can overflow some session stores
@@ -27,6 +27,11 @@ class OmniauthCallbacksController < ApplicationController
       expires_at: Time.at(@auth['expires_at']).to_datetime
     )
     flash[:notice] = 'Drive account authenticated'
+    redirect_to root_path
+  end
+
+  def failure
+    flash[:warning] = 'Authentication cancelled'
     redirect_to root_path
   end
 end

@@ -11,6 +11,7 @@
       %tr
         %th= file.name
         %th= link_to "View", file.web_view_link, target: '_blank'
+      - if current_user.instance_of? Secretary
         %th= link_to "Delete", course_material_path(@course.id,file.id), :method => :delete
 
 = link_to 'Back', course_path(@course)

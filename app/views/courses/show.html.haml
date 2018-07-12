@@ -18,8 +18,18 @@
   %br
   = link_to "Delete #{@course.name}", course_path(@course), :method => :delete
   %br
-  = link_to 'Back to courses list', courses_path
-%br
   = link_to 'Course Material', course_materials_path(@course)
-%br
-  = link_to 'Back', :back
+  %br
+  = link_to 'Back to courses list', courses_path
+- else
+  %br
+  = link_to 'Course Material', course_materials_path(@course)
+- if current_user.instance_of? Secretary
+  %br
+  = link_to 'Back', courses_path
+- elsif current_user.courses.include?(@course)
+  %br
+  = link_to 'Back', "student/#{current_user.id}"
+- else
+  %br
+  = link_to 'Back', 'enrollable'

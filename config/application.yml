@@ -11,4 +11,8 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 Google_Client_Id: '104538768718-59mdip3n61t9vg2fauie1fpuuuv8un42.apps.googleusercontent.com'
-Google_Client_Secret: 'avMOC8rA5vSBE5u8YLD2BMFN'
+Google_Client_Secret: 'LAEavVXmzme2tkkHmnNlbLYz'
+Google_Picker_Key: 'AIzaSyBz_xWWGRu2gccq7xFYg-ubBPjEpp2unWg'
+Drive_at: 'ya29.Glv2BaSrmKHkhqKpuhbJnssDH_sghYOamaf84KlfjEycWEKZ2Hd3AW8W4SGRvJYPUcQhCjVvGJ7q0YVd_O2Cb4Lged4ETR0cHovyEpOlatZXiGtjnnATowXH_HT6'
+Drive_rt: '1/nm31clmHMW9bJTZXCi8aVATjIQNOZPavdtqmEr6h81c'
+Drive_exp: '2018-07-12 17:47:08 UTC'
