@@ -69,7 +69,7 @@ class BooksController < ApplicationController
     redirect_to book_path(@book)
   end
 
-  def
+
 
   def destroy
     if current_user.id == @book.owner_id
