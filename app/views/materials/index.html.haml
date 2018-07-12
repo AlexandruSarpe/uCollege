@@ -1,0 +1,15 @@
+= content_for :head do
+  = javascript_include_tag 'https://apis.google.com/js/api.js?onload=loadPicker'
+%h1 Materials
+
+%button#add Add material
+
+%table#materials
+  %tbody
+    - @files.each do |file|
+      %tr
+        %th= file.name
+        %th= link_to "View", file.web_view_link, target: '_blank'
+        %th= link_to "Delete", course_material_path(@course.id,file.id), :method => :delete
+
+= link_to 'Back', course_path(@course)

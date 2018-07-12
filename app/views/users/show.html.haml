@@ -12,6 +12,9 @@
   %li
     Email:
     = @user.email
+%br
 = link_to "Edit #{@user.username}'s info", edit_user_path(@user)
+%br
 = link_to "Delete #{@user.username}'s account", user_path(@user), :method => :delete
+%br
 = link_to 'Back to users list', users_path

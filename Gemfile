@@ -53,6 +53,12 @@ gem 'omniauth-google-oauth2'
 # in application.yml which is gitignored
 gem 'figaro'
 
+gem 'jquery-rails'
+
+gem 'gon'
+
+gem 'google-api-client'
+
 group :development, :test do
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution
@@ -73,10 +79,12 @@ group :development do
 end
 
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'rails-controller-testing'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end

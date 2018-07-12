@@ -9,11 +9,17 @@
   %li
     Type:
     = @course.course_type
-
+%br
 - # if this page is shown to the a Secretary
 - if current_user.instance_of? Secretary
   = link_to 'See enrolled students', course_enrollments_path(@course)
+  %br
   = link_to "Edit #{@course.name}", edit_course_path(@course)
+  %br
   = link_to "Delete #{@course.name}", course_path(@course), :method => :delete
-
-= link_to 'Back to courses list', courses_path
+  %br
+  = link_to 'Back to courses list', courses_path
+%br
+  = link_to 'Course Material', course_materials_path(@course)
+%br
+  = link_to 'Back', :back

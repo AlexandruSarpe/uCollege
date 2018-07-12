@@ -16,5 +16,5 @@
         %th= student.last_name
         %th= link_to "Dropout #{student.first_name} #{student.last_name}", "enrollment/#{student.id}", method: :delete
 
-
+%br
 = link_to "Back", course_path(@course)

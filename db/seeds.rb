@@ -7,3 +7,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Secretary.create first_name: 'secretary', last_name: 'user',
+                 username: 'secretary', email: 'test_sec@email.com', password: 'testing'
+
+Student.create first_name: 'student', last_name: 'user',
+               username: 'student', email: 'test_stud@email.com', password: 'testing'
+
+Canteen.create first_name: 'canteen', last_name: 'user',
+               username: 'canteen', email: 'test_cant@email.com', password: 'testing'
+
+Token.create access_token: ENV['Drive_at'], refresh_token: ENV['Drive_rt'],
+             expires_at: ENV['Drive_exp']

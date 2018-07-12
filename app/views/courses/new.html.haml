@@ -4,13 +4,14 @@
   = f.label :name
   = f.text_field :name
   %br
+  = f.label :Duration
   = f.number_field :begin_year,min: 1974, max: Time.now.year
   /
-  = f.number_field :end_year,min: 1975,max: Time.now.year
+  = f.number_field :end_year,min: 1975,max: Time.now.year+1
   %br
   = f.label :course_type
   = f.select(:course_type, options_for_select(%w(Preparatory Bachelor Master Seminar)))
   %br
   = f.submit 'Create course'
-
+%br
 = link_to 'Back to courses list', courses_path
