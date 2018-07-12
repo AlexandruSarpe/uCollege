@@ -23,5 +23,5 @@
 - if @book.owner_id == @book.current_owner_id && @book.current_owner_id != current_user.id
 	= link_to 'Borrow' ,  borrow_book_path(@book) , :method => :post
 
-- if current_user.id == @book.current_owner_id
+- if current_user.id == @book.current_owner_id && @book.owner_id != current_user.id
 	= link_to 'Return',  returnbook_book_path(@book) ,  :method => :post
