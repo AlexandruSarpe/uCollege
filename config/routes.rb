@@ -11,8 +11,6 @@ Rails.application.routes.draw do
     resources :books
     post "/books/:id/borrow", to: 'books#borrow' , as: "borrow_book"
     post "/books/:id/returnbook", to: 'books#returnbook', as: "returnbook_book"
-
-
   end
   # root for non authenticated users
   root 'home#index'

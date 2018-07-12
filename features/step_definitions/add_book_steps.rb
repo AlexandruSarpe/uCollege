@@ -1,10 +1,8 @@
 Given("I am an authenticated user") do
   visit new_user_session_path
-  email = "prova2@email.com"
-  password = "prova2"
-  Student.new(:email => email, :password => password, :password_confirmation => password).save!
-  fill_in "user_email", :with => email
-  fill_in "user_password", :with => password
+  @student = FactoryBot.create(:student1)
+  fill_in "user_email", :with => @student.email
+  fill_in "user_password", :with => @student.password
   click_on "Log in"
 
 
@@ -19,17 +17,16 @@ When("I click on {string}") do |string|
 end
 
 And("I add the information and click on {string}") do |string|
-  title = "libro5"
-  description = "Avventura"
-  author = "ignoto"
-  fill_in "book_title", :with => title
+  @title = "Book1"
+  description = "Poetry"
+  author = "Moravia"
+  fill_in "book_title", :with => @title
   fill_in "book_author", :with => author
   fill_in "book_description", :with => description
   click_on string
 end
 
 Then("The book should be created") do
-  title = "libro5"
-  @book = Book.where(["title = ?", title]).first
+  @book = Book.where(["title = ?", @title]).first
   expect(@book).to_not be(nil)
 end

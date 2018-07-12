@@ -1,4 +1,5 @@
 %h1 All Books
+= link_to "Refresh" , books_path
 
 %table#books
   %thead
@@ -17,6 +18,10 @@
         %td= Student.find(book.current_owner_id).first_name
         %td= link_to "More about #{book.title}", book_path(book)
 
-
+%br
+= form_tag(books_path, method: :get) do
+  = text_field_tag :title , params[:title]
+  = submit_tag 'Search', name: nil
+%br
 = link_to 'Add book', new_book_path
 = link_to "Homepage" , root_path

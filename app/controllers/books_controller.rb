@@ -1,12 +1,17 @@
 class BooksController < ApplicationController
-  before_action :find_book, only: [:show, :edit, :update, :destroy , :borrow, :returnbook]
+  before_action :find_book, only: [:show, :edit, :update, :destroy , :borrow, :returnbook, :find]
   #befor_action authenticate_user!
   def index
-    @books = Book.all.order("created_at DESC")
+    #@books = Book.all.order("created_at DESC")
+    if params[:title]
+      @books = Book.where('title LIKE ?', "#{params[:title]}").all.order("created_at DESC")
+    else
+      @books = Book.all.order("created_at DESC")
+    end
   end
 
   def show
-  
+
   end
 
   def new
@@ -58,6 +63,13 @@ class BooksController < ApplicationController
     end
 
   end
+
+
+  def find
+    redirect_to book_path(@book)
+  end
+
+  def
 
   def destroy
     if current_user.id == @book.owner_id

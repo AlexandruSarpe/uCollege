@@ -1,13 +1,9 @@
 Given("I am an authenticated user ") do
   visit new_user_session_path
-  email = "prova2@email.com"
-  password = "prova2"
-  Student.new(:email => email, :password => password, :password_confirmation => password).save!
-  fill_in "user_email", :with => email
-  fill_in "user_password", :with => password
+  @student = FactoryBot.create(:student1)
+  fill_in "user_email", :with => @student.email
+  fill_in "user_password", :with => @student.password
   click_on "Log in"
-
-
 end
 
 And("I am on the books page ") do
@@ -15,21 +11,12 @@ And("I am on the books page ") do
 end
 
 Given("There is at least one listed book that I'm not the current owner of that book") do
-  title = "libro6"
-  description = "Avventura"
-  author = "ignoto"
-  email = "prova1@email.com"
-  password = "prova1"
-  Student.new(:email => email, :password => password, :password_confirmation => password).save!
-  @student = Student.where(["email = ?", email]).first
-  Book.new( :title => title,  :description => description, :author => author,  :owner_id => @student.id , :current_owner_id => @student.id).save!
-  @book = Book.where(["title = ?", title]).first
-  @book.update(:owner_id => @student.id , :current_owner_id => @student.id)
+  @student2 = FactoryBot.create(:student2)
+  @book = FactoryBot.create(:book1)
+  @book.update(:owner_id => @student2.id , :current_owner_id => @student2.id)
 end
 
 When("I look at the information of the first listed book that I'm not the current owner") do
-  title = "libro6"
-  @book = Book.where(["title = ?", title]).first
   visit book_path(@book)
 end
 
@@ -38,9 +25,5 @@ And("I click on {string} ") do |string|
 end
 
 Then("I should be the current owner of that book") do
-  title = "libro6"
-  email = "prova2@email.com"
-  @book = Book.where(["title = ?", title]).first
-  @student2 = Student.where(["email = ?", email]).first
-  expect(@book.current_owner_id).to eq(@student2.id)
+  expect(@book.current_owner_id).to eq(@student.id)
 end
