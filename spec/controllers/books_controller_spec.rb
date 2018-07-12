@@ -36,7 +36,7 @@ RSpec.describe BooksController, type: :controller do
       it "Returns the book" do
 				@book = FactoryBot.create(:book1)
 				sign_in @student1
-        post :borrow, params: {id: @book.id}
+        @book.update(:current_owner_id => @student1.id)
 				@book.reload
 				post :returnbook, params: {id: @book.id}
 				@book.reload
