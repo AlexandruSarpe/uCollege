@@ -1,8 +1,19 @@
 %h2 #{current_user.username}'s Dashboard
 
-- if current_user.type == 'Secretary'
-  = link_to 'List Users', users_path
+- if current_user.instance_of? Secretary
+  = link_to 'Manage Users', users_path
+  %br
+  = link_to 'Manage Courses', courses_path
+  %br
+  - unless Token.all.any?
+    = link_to 'Authenticate uCollege Drive Account', '/auth/google_oauth2_drive'
 
-= link_to "About  #{current_user.username}", user_path(current_user)
+- if current_user.instance_of? Student
+  = link_to 'Courses', "courses/student/#{current_user.id}"
+  = link_to 'Books', books_path(current_user)
+
+%br
+= link_to "About  #{current_user.username}", "/new/user/#{current_user.id}"
+
+%br
 = link_to 'Log Out', destroy_user_session_path, method: :delete
-= link_to "Libri", books_path(current_user)

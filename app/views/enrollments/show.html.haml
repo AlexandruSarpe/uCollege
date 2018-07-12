@@ -1,0 +1,16 @@
+%h2 Enrolling students
+
+%table
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th Enroll
+  %tbody
+    - @students.each do |student|
+      %tr
+        %th= student.first_name
+        %th= student.last_name
+        %th= link_to 'Enroll', "enrollment/#{student.id}", method: :post
+%br
+= link_to 'Back', course_enrollments_path

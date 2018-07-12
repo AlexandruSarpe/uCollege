@@ -17,3 +17,5 @@
         %th= link_to "More about #{user.username}", user_path(user)
         %th= link_to "Edit #{user.username}", edit_user_path(user)
         %th= link_to "Delete #{user.username}", user_path(user), :method => :delete
+%br
+= link_to 'Back to Dashboard', authenticated_root_path

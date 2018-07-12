@@ -10,18 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_153114) do
+ActiveRecord::Schema.define(version: 2018_07_08_123440) do
 
-  create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.string "author"
-    t.integer "owner_id"
-    t.integer "current_owner_id"
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.integer "begin_year"
+    t.integer "end_year"
+    t.string "course_type"
+    t.string "material"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["current_owner_id"], name: "index_books_on_current_owner_id"
-    t.index ["owner_id"], name: "index_books_on_owner_id"
+    t.index ["name", "begin_year", "end_year"], name: "index_courses_on_name_and_begin_year_and_end_year", unique: true
+  end
+
+  create_table "enrollments", id: false, force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "course_id", null: false
+    t.index ["student_id", "course_id"], name: "index_enrollments_on_student_id_and_course_id", unique: true
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.string "access_token"
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

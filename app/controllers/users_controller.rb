@@ -1,19 +1,25 @@
 # frozen_string_literal: true
 
+# noinspection ALL
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   # showing user list
   def index
+    authorize! :read, :Secretary, :User, :Canteen
     @users = User.all
   end
 
   # showing user profile page
   def show
     @user = User.find(params[:id])
+    authorize! :read, @user.type.to_sym
   end
 
   # deleting a user
   def destroy
-    User.find(params[:id]).destroy
+    @user = User.find(params[:id])
+    authorize! :destroy, @user.type.to_sym
+    @user.destroy
     flash[:notice] = 'User deleted'
     redirect_to users_path
   end
@@ -21,11 +27,13 @@ class UsersController < ApplicationController
   # editing a user
   def edit
     @user = User.find(params[:id])
+    authorize! :update, @user.type.to_sym
   end
 
   # updating a user
   def update
     @user = User.find(params[:id])
+    authorize! :update, @user.type.to_sym
     data = params.require(:user).permit(:first_name, :last_name, :username, :email)
     res = @user.update(data)
     if res

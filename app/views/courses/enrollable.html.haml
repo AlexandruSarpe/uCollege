@@ -1,0 +1,19 @@
+%h1 All Enrollable Courses
+
+%h3 Courses
+%table#courses
+  %thead
+    %tr
+      %th Name
+      %th Type
+      %th Year
+      %th About
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %th= course.name
+        %th= course.course_type
+        %th= "#{course.begin_year}/#{course.end_year}"
+        %th= link_to "More about #{course.name}", course_path(course)
+        %th= link_to 'Enroll', "/courses/#{course.id}/enrollment/#{current_user.id}", method: :post if course.begin_year == Time.now.year - 1 || course.begin_year == Time.now.year  #&& Time.now.month <= 12 && Time.now.month > 8
+= link_to 'Back to enrolled courses', "student/#{current_user.id}"

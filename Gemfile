@@ -41,13 +41,26 @@ gem "bootstrap-sass"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# authentication manager
 gem 'devise'
 
+# alternative to erb to create dynamic web pages
 gem 'haml'
 
+# authorization manager
 gem 'canard', '~> 0.5.0.pre'
-
+# Google OAuth strategy
 gem 'omniauth-google-oauth2'
+
+# setting un enviroment variables securely
+# in application.yml which is gitignored
+gem 'figaro'
+
+gem 'jquery-rails'
+
+gem 'gon'
+
+gem 'google-api-client'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -73,8 +86,10 @@ end
 group :test do
   gem 'cucumber-rails', require: false
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'rails-controller-testing'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

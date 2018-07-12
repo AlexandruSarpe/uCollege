@@ -61,5 +61,8 @@
   <% end %>
 <% end %>
 <% unless user_signed_in? %>
-  <%= render "devise/shared/links" %>
+  <%= link_to "Log in", new_session_path(resource_name) %><br/>
+  <%= link_to "Sign in with Google", '/auth/google_oauth2' %>
+  <br/>
 <% end %>
+<%= link_to "Back", root_path %>

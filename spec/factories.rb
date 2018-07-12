@@ -1,15 +1,11 @@
 FactoryBot.define do
-    factory :student1, class: Student do
-        roles_mask "1"
-        username "test1"
-        email "test1@email.com"
-        password "passwordtes1"
-    end
+<<<<<<< HEAD
     factory :student2, class: Student do
-        roles_mask "1"
-        username "test2"
-        email "test2@email.com"
-        password "passwordtest2"
+      first_name 'student2'
+      last_name 'student2'
+      username 'student2'
+      email 'test_stud2@email.com'
+      password 'testing'
     end
     factory :book1, class: Book do
         title "Book1"
@@ -19,3 +15,47 @@ FactoryBot.define do
         current_owner_id 2
     end
 end
+=======
+  factory :student, class: Student do
+    first_name 'student'
+    last_name 'student'
+    username 'student'
+    email 'test_stud@email.com'
+    password 'testing'
+  end
+
+  factory :canteen, class: Canteen do
+    first_name 'canteen'
+    last_name 'canteen'
+    username 'canteen'
+    email 'test_cant@email.com'
+    password 'testing'
+  end
+
+  factory :secretary, class: Secretary do
+    first_name 'secretary'
+    last_name 'secretary'
+    username 'secretary'
+    email 'test_sec@email.com'
+    password 'testing'
+  end
+
+  factory :secretary2, class: Secretary do
+    first_name 'secretary2'
+    last_name 'secretary2'
+    username 'secretary2'
+    email 'test_sec2@email.com'
+    password 'testing'
+  end
+
+  factory :user, class: User do
+    first_name 'user'
+    last_name 'user'
+    username 'user'
+    email 'test_usr@email.com'
+    password 'testing'
+  end
+
+
+end
+>>>>>>> Courses

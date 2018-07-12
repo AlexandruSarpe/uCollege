@@ -1,0 +1,17 @@
+%h2 Edit #{@course.name}
+
+= form_for @course, url: course_path(@course), html: { method: :put } do |f|
+  = f.label :name
+  = f.text_field :name
+  %br
+  = f.label :year
+  = f.number_field :begin_year,min: 1974, max: Time.now.year
+  /
+  = f.number_field :end_year,min: 1975, max: Time.now.year
+  %br
+  = f.label :course_type
+  = f.select(:course_type, options_for_select(%w(Preparatory Bachelor Master Seminar)))
+  %br
+  = f.submit 'Update course'
+%br
+= link_to 'Cancel', course_path(@course)
