@@ -25,5 +25,6 @@ And("I click on {string} ") do |string|
 end
 
 Then("I should be the current owner of that book") do
+  @book.reload
   expect(@book.current_owner_id).to eq(@student.id)
 end
