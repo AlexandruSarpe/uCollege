@@ -1,21 +1,18 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-<<<<<<< HEAD
-    factory :student2, class: Student do
-      first_name 'student2'
-      last_name 'student2'
-      username 'student2'
-      email 'test_stud2@email.com'
-      password 'testing'
-    end
-    factory :book1, class: Book do
-        title "Book1"
-        author "Moravia"
-        description "Poetry"
-        owner_id 2
-        current_owner_id 2
-    end
-end
-=======
+  factory :student2, class: Student do
+    first_name 'student2'
+    last_name 'student2'
+    username 'student2'
+    email 'test_stud2@email.com'
+    password 'testing'
+  end
+  factory :book, class: Book do
+    title 'Book'
+    author 'Moravia'
+    description 'Poetry'
+  end
   factory :student, class: Student do
     first_name 'student'
     last_name 'student'
@@ -55,7 +52,4 @@ end
     email 'test_usr@email.com'
     password 'testing'
   end
-
-
 end
->>>>>>> Courses

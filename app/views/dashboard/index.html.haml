@@ -10,6 +10,7 @@
 
 - if current_user.instance_of? Student
   = link_to 'Courses', "courses/student/#{current_user.id}"
+  %br
   = link_to 'Books', books_path(current_user)
 
 %br

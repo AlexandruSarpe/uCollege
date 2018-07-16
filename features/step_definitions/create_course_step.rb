@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 Given('I am a secretary user') do
+  secretary = FactoryBot.create(:secretary)
   visit new_user_session_path
-  email = 'test_sec@email.com'
-  password = 'testing'
-  Secretary.create(email: email, password: password, password_confirmation: password)
-  fill_in 'user_email', with: email
-  fill_in 'user_password', with: password
+  fill_in 'user_email', with: secretary.email
+  fill_in 'user_password', with: secretary.password
   click_on 'Log in'
 end
 
