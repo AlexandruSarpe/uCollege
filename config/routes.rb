@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     # users managing methods used by secretaries
     resources :users, only: %i[index show edit destroy update]
 
+
+    resources :notifications
+
+
     # courses managing methods
     get '/courses/enrollable', to: 'courses#enrollable'
     resources :courses do

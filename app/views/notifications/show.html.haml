@@ -1,0 +1,17 @@
+%h2 Info about #{@notification.title}
+
+%ul#info
+  %li
+    title:
+    = @notification.title
+  %li
+    status:
+    = @notification.status
+
+%h3 notification's description:
+
+%p#description
+= @notification.description
+
+%br
+  = link_to 'Delete Notification', notification_path(@notification), :method => :delete
