@@ -1,12 +1,12 @@
 class NotificationsController < ApplicationController
-    before_action :find_notification, only: %i[show edit update destroy]
+    before_action :find_notification, only: %i[show edit update destroy change_status]
     before_action :authenticate_user!
 
     def index
         @notification = Notification.all.order('created_at DESC')
     end
 
-    def new 
+    def new
         @notification = Notification.new
     end
 
@@ -22,18 +22,23 @@ class NotificationsController < ApplicationController
             render 'new'
         end
     end
-    
+
 #edit,update
+    def change_status
+      authorize! :update, :Book
+      @notification.update(:status => 0)
+      redirect_to notifications_path
+    end
 
     def destroy
         authorize! :destroy, :Notification
-        @notification.destroy 
+        @notification.destroy
         redirect_to notifications_path
     end
 
 
 
-    private 
+    private
         def notification_params
             params.require(:notification).permit(:title,:description,:status)
         end

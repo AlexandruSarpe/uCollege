@@ -14,4 +14,7 @@
 = @notification.description
 
 %br
+  = link_to 'Notifications list', notifications_path
   = link_to 'Delete Notification', notification_path(@notification), :method => :delete
+  - if @notification.status == "active"
+    = link_to 'Change status', change_status_notifications_path(@notification), :method => :post

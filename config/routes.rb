@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
 
     resources :notifications
-
+    post '/notifications/:id/change_status', to: 'notifications#change_status', as: 'change_status_notifications'
 
     # courses managing methods
     get '/courses/enrollable', to: 'courses#enrollable'
