@@ -21,6 +21,13 @@ Rails.application.routes.draw do
     resources :notifications
     post '/notifications/:id/change_status', to: 'notifications#change_status', as: 'change_status_notifications'
 
+    
+    # GAB
+    get '/redirect', to: 'dashboard#redirect', as: 'redirect'
+    get '/callback', to: 'dashboard#callback', as: 'callback'
+    get '/calendar', to: 'dashboard#show_calendar', as: 'show_calendar'
+
+    
     # courses managing methods
     get '/courses/enrollable', to: 'courses#enrollable'
     resources :courses do

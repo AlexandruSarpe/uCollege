@@ -13,6 +13,12 @@
   %br
   = link_to 'Books', books_path(current_user)
   %br
+
+
+  = link_to 'Calendar', show_calendar_url
+  %br
+
+  
   = link_to 'Notifications', notifications_path
 %br
 = link_to "About  #{current_user.username}", "/new/user/#{current_user.id}"
