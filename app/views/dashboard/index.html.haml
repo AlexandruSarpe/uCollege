@@ -12,7 +12,17 @@
   = link_to 'Courses', "courses/student/#{current_user.id}"
   %br
   = link_to 'Books', books_path(current_user)
+  %br
+  = link_to 'Canteen', "reservations#new"
 
+- if current_user.instance_of? Canteen
+  = link_to 'add menus', "menus#new"
+  %br
+  = link_to 'create questionary', ""
+  %br
+  = link_to 'view questionaries result', ""
+  -#= %h3 'view reservations of the day'
+  
 %br
 = link_to "About  #{current_user.username}", "/new/user/#{current_user.id}"
 

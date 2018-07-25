@@ -1,0 +1,28 @@
+%h1 Menu della Settimana
+%table#menuMonday
+  %thead
+    %tr
+      %th
+        %select
+          %option{value: "Monday", selected: params[:x] == "Monday"}= "Monday"
+          %option{value: "Tuesday", selected: params[:x] == "Tuesday"}= "Tuesday"
+          %option{value: "Wednesday", selected: params[:x] == "Wednesday"}= "Wednesday"
+          %option{value: "Thursday", selected: params[:x] == "Thursday"}= "Thursday"
+          %option{value: "Friday", selected: params[:x] == "Friday"}= "Friday"
+          %option{value: "Saturday", selected: params[:x] == "Saturday"}= "Saturday"
+          %option{value: "Sunday", selected: params[:x] == "Sunday"}= "Sunday"
+    %tr
+      %th Lunch
+      %th Dinner
+  %tfoot
+    %tr
+      %td First Course
+        %input{type: "text", name: "firstCourse" }
+      %td Second Course
+        %input{type: "text", name: "secondCourse" }
+      %td Side Dish
+        %input{type: "text", name: "sideDish" }
+      %td Notes
+        %input{type: "text", name: "notes" }
+
+%input{type: "submit", value: "Save", name: "saveMenu" }

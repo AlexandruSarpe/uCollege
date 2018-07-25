@@ -1,0 +1,35 @@
+%h1= "Menu canteen of day #{Time.now.strftime("%d/%m/%Y %A")}"
+= link_to 'Back to users list', authenticated_root_path
+%h3 Menu Lunch
+%table#menuLunch
+  %thead
+    %tr
+      %th First Course
+      %th Second Course
+      %th Side Dish
+      %th Note
+  %tfoot
+    %tr
+      %td firstCourse
+      %td secondCourse
+      %td sideDish
+      %td notes
+      %td Reserve
+
+%h3 Menu Dinner
+%table#menuDinner
+  %thead
+    %tr
+      %th First Course
+      %th Second Course
+      %th Side Dish
+      %th Note
+  %tfoot
+    %tr
+      %td firstCourse
+      %td secondCourse
+      %td sideDish
+      %td notes
+      %td Reserve
+
+=Menu.all.size

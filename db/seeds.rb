@@ -17,5 +17,8 @@ Student.create first_name: 'student', last_name: 'user',
 Canteen.create first_name: 'canteen', last_name: 'user',
                username: 'canteen', email: 'test_cant@email.com', password: 'testing'
 
-Token.create access_token: ENV['Drive_at'], refresh_token: ENV['Drive_rt'],
-             expires_at: ENV['Drive_exp']
+Menu.create date: '25/07/2018', mealType: 'lunch', firstCourse: 'Carbonara, Amatriciana', 
+            secondCourse: 'Pollo, Manzo', sideDish: 'patate, faggiolini', notes: 'vuoto'#, writtenBy:3
+
+Menu.create date: '25/07/2018', mealType: 'dinner', firstCourse: 'Carbonara, Amatriciana', 
+            secondCourse: 'Pollo, Manzo', sideDish: 'patate, faggiolini', notes: 'vuoto'#, writtenBy:3

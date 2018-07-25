@@ -28,6 +28,12 @@ Rails.application.routes.draw do
     end
     get 'courses/student/:id', to: 'courses#enrolled'
     get 'auth/google_oauth2_drive/callback', to: 'omniauth_callbacks#google_oauth2_drive'
+
+    # Menus
+    resources :menus
+
+    # Reservations
+    resources :reservations
   end
   # root for non authenticated users
   root 'home#index'
