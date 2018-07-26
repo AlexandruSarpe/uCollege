@@ -1,8 +1,8 @@
 # menu reservations
 class Reservation < ApplicationRecord
-  validates_presence_of :reservationStudent
-  validates_presence_of :reservationMenu
+  validates_presence_of :student
+  validates_presence_of :menu
 
-  belongs_to :reservationStudent, class_name: 'Student'
-  has_many :reservationMenu, class_name: 'Menu', foreign_key: 'add_index', dependent: :delete_all
+  belongs_to :student, dependent: :delete
+  belongs_to :menu, dependent: :delete
 end

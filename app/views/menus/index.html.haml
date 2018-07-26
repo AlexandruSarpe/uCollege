@@ -1,257 +1,39 @@
-%h1= "Menu canteen of day #{Time.now.strftime("%d/%m/%Y %A")}"
-%h2 Monday
-%h3 Menu Lunch
-%table#menuLunch
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
+%h1= "Menu of canteen from #{Date.today.at_beginning_of_week.strftime("%d/%m/%Y")} to #{Date.today.at_end_of_week.strftime("%d/%m/%Y")}"
+= link_to "Back", authenticated_root_path
+-(Date.today.at_beginning_of_week..Date.today.at_end_of_week).map.each do |day|
+  %h2=day.strftime("%A, %d/%m/%Y")
+  %h3 Menu Lunch
+  %table#menuLunch
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+        %th=link_to "Edit", ""
+        %th=link_to "Delete", ""
+    %tfoot
+      - Menu.all.where(date: day.strftime("%Y/%m/%d"), mealType: 'lunch').each do |item|
+        %tr
+          %td=item.firstCourse
+          %td=item.secondCourse
+          %td=item.sideDish
+          %td=item.notes
 
-%h3 Menu Dinner
-%table#menuDinner
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-%br
-%input{ :type=>"submit", :value=>"Reservation", :name=>"sendRevesevetions" }
-%input{ :type=>"submit", :value=>"Reset", :name=>"reset" }
-
-%h2 Tuesday
-%h3 Menu Lunch
-%table#menuLunch
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%h3 Menu Dinner
-%table#menuDinner
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%br
-%input{ :type=>"submit", :value=>"Reservation", :name=>"sendRevesevetions" }
-%input{ :type=>"submit", :value=>"Reset", :name=>"reset" }
-
-%h2 Wednesday
-%h3 Menu Lunch
-%table#menuLunch
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%h3 Menu Dinner
-%table#menuDinner
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%br
-%input{ :type=>"submit", :value=>"Reservation", :name=>"sendRevesevetions" }
-%input{ :type=>"submit", :value=>"Reset", :name=>"reset" }
-
-%h2 Thursday
-%h3 Menu Lunch
-%table#menuLunch
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%h3 Menu Dinner
-%table#menuDinner
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%br
-%input{ :type=>"submit", :value=>"Reservation", :name=>"sendRevesevetions" }
-%input{ :type=>"submit", :value=>"Reset", :name=>"reset" }
-
-%h2 Friday
-%h3 Menu Lunch
-%table#menuLunch
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%h3 Menu Dinner
-%table#menuDinner
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%br
-  %input{ :type=>"submit", :value=>"Reservation", :name=>"sendRevesevetions" }
-  %input{ :type=>"submit", :value=>"Reset", :name=>"reset" }
-
-%h2 Saturday
-%h3 Menu Lunch
-%table#menuLunch
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%h3 Menu Dinner
-%table#menuDinner
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%br
-%input{ :type=>"submit", :value=>"Submit", :name=>"sendRevesevetions" }
-%input{ :type=>"submit", :value=>"Reset", :name=>"reset" }
-
-%h2 Sunday
-%h3 Menu Lunch
-%table#menuLunch
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-%h3 Menu Dinner
-%table#menuDinner
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-%br
-  %input{ :type=>"submit", :value=>"Reservation", :name=>"sendRevesevetions" }
-  %input{ :type=>"submit", :value=>"Reset", :name=>"reset" }
+  %h3 Menu Dinner
+  %table#menuDinner
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+        %th=link_to "Edit", ""
+        %th=link_to "Delete", ""
+    %tfoot
+      - Menu.all.where(date: day.strftime("%Y/%m/%d"), mealType: 'dinner').each do |item|
+        %tr
+          %td=item.firstCourse
+          %td=item.secondCourse
+          %td=item.sideDish
+          %td=item.notes

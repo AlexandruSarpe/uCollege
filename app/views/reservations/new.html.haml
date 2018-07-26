@@ -1,34 +1,73 @@
 %h1= "Reservetion canteen of day #{Time.now.strftime("%d/%m/%Y %A")}"
+%p
+  = link_to 'Back', :back
+
+%h3 Menu Lunch
+%table#menuLunch
+  %thead
+    %tr
+      %th First Course
+      %th Second Course
+      %th Side Dish
+      %th Note
+  %tfoot
+    - Menu.all.where("mealType='lunch'").each do |item|
+      %tr
+        %td=item.firstCourse
+        %td=item.secondCourse
+        %td=item.sideDish
+        %td=item.notes
+
+%h3 Menu Dinner
+%table#menuDinner
+  %thead
+    %tr
+      %th First Course
+      %th Second Course
+      %th Side Dish
+      %th Note
+  %tfoot
+    - Menu.all.where("mealType='dinner'").each do |item|
+      %tr
+        %td=item.firstCourse
+        %td=item.secondCourse
+        %td=item.sideDish
+        %td=item.notes
+
 %h2 Reserve for Lunch
-%input{ :type=>"checkbox", :name=>"resLunch" } Reserve
-%h3 Alternatives first course
-%input{ :type=>"radio", :name=>"AFCL" } alt1
-%input{ :type=>"radio", :name=>"AFCL"  } alt2
-%h3 Alternatives second course
-%input{ :type=>"radio", :name=>"ASCL"} alt1 
-%input{ :type=>"radio", :name=>"ASCL"} alt2 
-%input{ :type=>"radio", :name=>"ASCL"} alt3
-%input{ :type=>"radio", :name=>"ASCL"} alt4
-%h3 Alternatives side dish
-%input{ :type=>"radio", :name=>"ASDL" } alt1
-%input{ :type=>"radio", :name=>"ASDL" } alt2
-%h3 Notes
-%label Note 
-%input{ :type=>"text", :name=>"notes"}
+- Menu.all.where("mealType='lunch'").each do |item|
+  %input{ :type=>"checkbox", :name=>"resLunch" } Reserve
+  %h3 Alternatives first course
+  -item.firstCourse.split(',').each do |elm|
+    %input{ :type=>"radio", :name=>"AFCL" }
+    %lable=elm
+  %h3 Alternatives second course
+  -item.secondCourse.split(',').each do |elm|
+    %input{ :type=>"radio", :name=>"ASCL"}
+    %lable=elm
+  %h3 Alternatives side dish
+  -item.sideDish.split(',').each do |elm|
+    %input{ :type=>"radio", :name=>"ASDL" }
+    %lable=elm
+  %h3 Notes
+  %label Note 
+  %input{ :type=>"text", :name=>"notes"}
 
 %h2 Reserve for Dinner
-%input{ :type=>"checkbox", :name=>"resDinner" } Reserve
-%h3 Alternatives first course
-%input{ :type=>"radio", :name=>"AFCD" } alt1
-%input{ :type=>"radio", :name=>"AFCD"  } alt2
-%h3 Alternatives second course
-%input{ :type=>"radio", :name=>"ASCD"} alt1 
-%input{ :type=>"radio", :name=>"ASCD"} alt2 
-%input{ :type=>"radio", :name=>"ASCD"} alt3
-%input{ :type=>"radio", :name=>"ASCD"} alt4
-%h3 Alternatives side dish
-%input{ :type=>"radio", :name=>"ASDD" } alt1
-%input{ :type=>"radio", :name=>"ASDD" } alt2
+- Menu.all.where("mealType='dinner'").each do |item|
+  %input{ :type=>"checkbox", :name=>"resLunch" } Reserve
+  %h3 Alternatives first course
+  -item.firstCourse.split(',').each do |elm|
+    %input{ :type=>"radio", :name=>"AFCL" }
+    %lable=elm
+  %h3 Alternatives second course
+  -item.secondCourse.split(',').each do |elm|
+    %input{ :type=>"radio", :name=>"ASCL"}
+    %lable=elm
+  %h3 Alternatives side dish
+  -item.sideDish.split(',').each do |elm|
+    %input{ :type=>"radio", :name=>"ASDL" }
+    %lable=elm
 %h3 Notes
 %label Note 
 %input{ :type=>"text", :name=>"notes"}

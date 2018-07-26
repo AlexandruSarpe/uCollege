@@ -9,4 +9,16 @@ class ReservationsController < ApplicationController
     authorize! :create, :Reservation
   end
 
+  def newGuest
+    authorize! :create, :Reservation
+  end
+
+  def edit
+    authorize! :update, :Reservation
+  end
+
+  def show
+    authorize! :read, :Reservation
+  end
+
 end

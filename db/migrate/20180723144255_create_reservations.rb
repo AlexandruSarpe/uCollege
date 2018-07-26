@@ -4,16 +4,16 @@
 class CreateReservations < ActiveRecord::Migration[5.2]
   def change
     create_table :reservations do |t|
-      t.integer :guestNumber
-      t.string :FirstCourseAlternatives
-      t.string :SecondCourseAlternatives
-      t.string :SideDishAlternatives
+      t.string :typeReservation
+      t.string :firstCourseAlternatives
+      t.string :secondCourseAlternatives
+      t.string :sideDishAlternatives
       t.string :notes
-      t.belongs_to :reservationStudent, index: true
-      t.belongs_to :reservationMenu, index: true
+      t.belongs_to :student, index: true
+      t.belongs_to :menu, index: true
 
       t.timestamps
     end
-    add_index :reservations, %i[reservationStudent reservationMenu], unique: true
+    add_index :reservations, %i[student menu], unique: true
   end
 end

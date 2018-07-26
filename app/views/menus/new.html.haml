@@ -1,28 +1,33 @@
-%h1 Menu della Settimana
-%table#menuMonday
-  %thead
-    %tr
-      %th
-        %select
-          %option{value: "Monday", selected: params[:x] == "Monday"}= "Monday"
-          %option{value: "Tuesday", selected: params[:x] == "Tuesday"}= "Tuesday"
-          %option{value: "Wednesday", selected: params[:x] == "Wednesday"}= "Wednesday"
-          %option{value: "Thursday", selected: params[:x] == "Thursday"}= "Thursday"
-          %option{value: "Friday", selected: params[:x] == "Friday"}= "Friday"
-          %option{value: "Saturday", selected: params[:x] == "Saturday"}= "Saturday"
-          %option{value: "Sunday", selected: params[:x] == "Sunday"}= "Sunday"
-    %tr
-      %th Lunch
-      %th Dinner
-  %tfoot
-    %tr
-      %td First Course
-        %input{type: "text", name: "firstCourse" }
-      %td Second Course
-        %input{type: "text", name: "secondCourse" }
-      %td Side Dish
-        %input{type: "text", name: "sideDish" }
-      %td Notes
-        %input{type: "text", name: "notes" }
+%h1 Insert menus of this week
+= form_for @menu, url: "/menus", html: { method: :post } do |f|
+  %table
+    %tfoot
+      %tr
+        %td
+          = f.label :Date
+          = f.date_field(:date, min: Date.today.at_beginning_of_week, max: Date.today.at_end_of_week, required: true)
+        %td
+          = f.label :Meal
+          = f.select(:mealType, options_for_select(%w(lunch dinner)))
+      %tr
+        %td
+          Enter the menu dishes
+      %tr
+        %td 
+          = f.label :'First Course'
+          = f.text_area(:'firstCourse', cols: "50", rows: "2", required: true)
+      %tr
+        %td 
+          =f.label :'Second Course'
+          =f.text_area(:'secondCourse', cols: "50", rows: "2",required: true)
+      %tr
+        %td 
+          =f.label :'Side Dish'
+          =f.text_area(:'sideDish', cols: "50", rows: "2",required: true)
+      %tr
+        %td 
+          =f.label :'Notes'
+          =f.text_area(:'notes', cols: "50", rows: "2")
 
-%input{type: "submit", value: "Save", name: "saveMenu" }
+  =f.submit "Add Menu"
+= link_to "Back", authenticated_root_path

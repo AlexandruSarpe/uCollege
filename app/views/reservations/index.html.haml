@@ -9,12 +9,12 @@
       %th Side Dish
       %th Note
   %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
+    - Menu.all.where("mealType='lunch'").each do |item|
+      %tr
+        %td=item.firstCourse
+        %td=item.secondCourse
+        %td=item.sideDish
+        %td=item.notes
 
 %h3 Menu Dinner
 %table#menuDinner
@@ -25,11 +25,14 @@
       %th Side Dish
       %th Note
   %tfoot
-    %tr
-      %td firstCourse
-      %td secondCourse
-      %td sideDish
-      %td notes
-      %td Reserve
-
-=Menu.all.size
+    - Menu.all.where("mealType='dinner'").each do |item|
+      %tr
+        %td=item.firstCourse
+        %td=item.secondCourse
+        %td=item.sideDish
+        %td=item.notes
+%br
+= link_to 'Reservation for you', "reservations/new"
+= link_to 'Reservation for guests', "reservations/newGuest"
+%br
+= link_to 'Edit Reservation', "reservations/edit"

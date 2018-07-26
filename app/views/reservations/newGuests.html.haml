@@ -1,4 +1,36 @@
 %p
+  %h3 Menu Lunch
+  %table#menuLunch
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      - Menu.all.where("mealType='lunch'").each do |item|
+        %tr
+          %td=item.firstCourse
+          %td=item.secondCourse
+          %td=item.sideDish
+          %td=item.notes
+  
+  %h3 Menu Dinner
+  %table#menuDinner
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      - Menu.all.where("mealType='dinner'").each do |item|
+        %tr
+          %td=item.firstCourse
+          %td=item.secondCourse
+          %td=item.sideDish
+          %td=item.notes
+%p
   %h1 Reserver for First Guest
   %h2 Reserve for Lunch
   %input{ :type=>"checkbox", :name=>"resLunch" } Reserve

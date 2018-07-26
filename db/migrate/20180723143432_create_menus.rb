@@ -4,13 +4,13 @@
 class CreateMenus < ActiveRecord::Migration[5.2]
   def change
     create_table :menus do |t|
-      t.datetime :date
+      t.date :date
       t.string :mealType
       t.string :firstCourse
       t.string :secondCourse
       t.string :sideDish
       t.string :notes
-      #t.belongs_to :writtenBy, index: true
+      t.belongs_to :canteen, index: true
 
       t.timestamps
     end

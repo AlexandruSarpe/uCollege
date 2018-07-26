@@ -42,30 +42,32 @@ ActiveRecord::Schema.define(version: 2018_07_23_144255) do
   end
 
   create_table "menus", force: :cascade do |t|
-    t.datetime "date"
+    t.date "date"
     t.string "mealType"
     t.string "firstCourse"
     t.string "secondCourse"
     t.string "sideDish"
     t.string "notes"
+    t.integer "canteen_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["canteen_id"], name: "index_menus_on_canteen_id"
     t.index ["date", "mealType"], name: "index_menus_on_date_and_mealType", unique: true
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "guestNumber"
-    t.string "FirstCourseAlternatives"
-    t.string "SecondCourseAlternatives"
-    t.string "SideDishAlternatives"
+    t.string "typeReservation"
+    t.string "firstCourseAlternatives"
+    t.string "secondCourseAlternatives"
+    t.string "sideDishAlternatives"
     t.string "notes"
-    t.integer "reservationStudent_id"
-    t.integer "reservationMenu_id"
+    t.integer "student_id"
+    t.integer "menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["reservationMenu_id"], name: "index_reservations_on_reservationMenu_id"
-    t.index ["reservationStudent_id"], name: "index_reservations_on_reservationStudent_id"
-    t.index [nil, nil], name: "index_reservations_on_reservationStudent_and_reservationMenu", unique: true
+    t.index ["menu_id"], name: "index_reservations_on_menu_id"
+    t.index ["student_id"], name: "index_reservations_on_student_id"
+    t.index [nil, nil], name: "index_reservations_on_student_and_menu", unique: true
   end
 
   create_table "tokens", force: :cascade do |t|

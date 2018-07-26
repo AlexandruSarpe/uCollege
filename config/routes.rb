@@ -30,10 +30,11 @@ Rails.application.routes.draw do
     get 'auth/google_oauth2_drive/callback', to: 'omniauth_callbacks#google_oauth2_drive'
 
     # Menus
-    resources :menus
-
-    # Reservations
-    resources :reservations
+    resources :menus do 
+      # Reservations
+      resources :reservations
+      get '/newGuest', to: 'reservations#newGuest'
+    end
   end
   # root for non authenticated users
   root 'home#index'
