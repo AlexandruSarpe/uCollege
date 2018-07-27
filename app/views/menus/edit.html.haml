@@ -1,0 +1,36 @@
+%h1 Edit #{@menu.date.strftime("%A, %Y/%m/%d")}
+= form_for @menu, url: menu_path(@menu), html: { method: :put } do |f|
+  %table
+    %tfoot
+      %tr
+        %td
+          = f.label :Date
+          = f.date_field(:date, min: Date.today.at_beginning_of_week, max: Date.today.at_end_of_week, required: true)
+        %td
+          = f.label :Meal
+          - if(@menu.mealType == "dinner")
+            = f.select(:mealType, options_for_select(["dinner", "lunch"]))
+          - else
+            = f.select(:mealType, options_for_select(["lunch", "dinner"]))
+      %tr
+        %td
+          Enter the menu dishes
+      %tr
+        %td 
+          = f.label :'First Course'
+          = f.text_area(:'firstCourse', cols: "50", rows: "2", required: true)
+      %tr
+        %td 
+          = f.label :'Second Course'
+          = f.text_area(:'secondCourse', cols: "50", rows: "2",required: true)
+      %tr
+        %td 
+          = f.label :'Side Dish'
+          = f.text_area(:'sideDish', cols: "50", rows: "2",required: true)
+      %tr
+        %td 
+          = f.label :'Notes'
+          = f.text_area(:'notes', cols: "50", rows: "2")
+
+  = f.submit "Update Menu"
+  = link_to "Cancel", menus_path

@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     get 'auth/google_oauth2_drive/callback', to: 'omniauth_callbacks#google_oauth2_drive'
 
     # Menus
-    resources :menus do 
+    get '/menus/indexAll', to:  'menus#indexAll'
+    resources :menus do
       # Reservations
       resources :reservations
       get '/newGuest', to: 'reservations#newGuest'

@@ -1,0 +1,52 @@
+%h1 Details about Menu of #{@menu.date.strftime("%A, %Y/%m/%d")}
+= link_to "Back", :back
+%br
+-if current_user.instance_of? Canteen
+  %label A student needs help
+
+-if current_user.instance_of? Student or Canteen
+  = link_to "Reservation", ""
+%h3 Menu
+%table#menu
+  %thead
+    %tr
+      %th First Course
+      %th Second Course
+      %th Side Dish
+      %th Note
+  %tfoot
+    %tr
+      %td=@menu.firstCourse
+      %td=@menu.secondCourse
+      %td=@menu.sideDish
+      %td=@menu.notes
+      -if @menu.date.to_date() >= Date.today.at_beginning_of_week && @menu.date.to_date() <= Date.today.at_end_of_week
+        %td=link_to "Edit", edit_menu_path(@menu.id)
+        %td=link_to "Delete", menu_path(@menu.id), :method => :delete
+
+- if current_user.instance_of? Canteen# or Secretary
+  %h1 Order to prepare
+  %table#menuLunchResult
+    %thead
+      %tr
+        %th Dish
+        %th Number
+    %tfoot
+      %tr
+        %td
+          %label= @menu.firstCourse 
+        %td
+          %label numero di volte scelto
+      %tr
+        %td
+          %label= @menu.secondCourse
+        %td
+          %label numero di volte scelto
+      %tr
+        %td
+          %label= @menu.sideDish
+        %td
+          %label numero di volte scelto
+      %tr
+        %td
+          %label Elenco alternative

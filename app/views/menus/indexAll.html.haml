@@ -1,0 +1,36 @@
+%h1= "List of all menus of canteen"
+= link_to "Back", authenticated_root_path
+- Menu.pluck(:date).uniq.sort.reverse.each do |data|
+  - Menu.all.where(mealType: 'lunch', date: data).each do |item|
+    %h2= "Menu of #{data.strftime("%A %d/%m/%Y")}"
+    %h3 Menu Lunch
+    %table#menuLunch
+      %thead
+        %tr
+          %th First Course
+          %th Second Course
+          %th Side Dish
+          %th Note
+      %tfoot
+        %tr
+          %td=item.firstCourse
+          %td=item.secondCourse
+          %td=item.sideDish
+          %td=item.notes
+          %td= link_to "Info Reservations", menu_path(item.id)
+    - Menu.all.where(mealType: 'dinner', date: data).each do |item1|
+      %h3 Menu Dinner
+      %table#menuDinner
+        %thead
+          %tr
+            %th First Course
+            %th Second Course
+            %th Side Dish
+            %th Note
+        %tfoot
+          %tr
+            %td=item1.firstCourse
+            %td=item1.secondCourse
+            %td=item1.sideDish
+            %td=item1.notes
+            %td= link_to "Info Reservations", menu_path(item1.id)
