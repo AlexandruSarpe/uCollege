@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 2018_07_23_144255) do
     t.datetime "updated_at", null: false
     t.index ["menu_id"], name: "index_reservations_on_menu_id"
     t.index ["student_id"], name: "index_reservations_on_student_id"
-    t.index [nil, nil], name: "index_reservations_on_student_and_menu", unique: true
   end
 
   create_table "tokens", force: :cascade do |t|

@@ -1,38 +1,53 @@
-%h1= "Menu canteen of day #{Time.now.strftime("%d/%m/%Y %A")}"
-= link_to 'Back to users list', authenticated_root_path
-%h3 Menu Lunch
-%table#menuLunch
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    - Menu.all.where("mealType='lunch'").each do |item|
+%h1= "Menu canteen of  #{Time.now.strftime("%A %d/%m/%Y")}"
+= link_to 'Back', authenticated_root_path
+%div
+  %h3 Menu Lunch
+  %table#menuLunch
+    %thead
       %tr
-        %td=item.firstCourse
-        %td=item.secondCourse
-        %td=item.sideDish
-        %td=item.notes
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      - Menu.all.where(mealType: 'lunch', date: Time.now.strftime("%Y/%m/%d")).each do |item|
+        %tr
+          %td=item.firstCourse
+          %td=item.secondCourse
+          %td=item.sideDish
+          %td=item.notes
 
-%h3 Menu Dinner
-%table#menuDinner
-  %thead
-    %tr
-      %th First Course
-      %th Second Course
-      %th Side Dish
-      %th Note
-  %tfoot
-    - Menu.all.where("mealType='dinner'").each do |item|
+  %h3 Menu Dinner
+  %table#menuDinner
+    %thead
       %tr
-        %td=item.firstCourse
-        %td=item.secondCourse
-        %td=item.sideDish
-        %td=item.notes
-%br
-= link_to 'Reservation for you', "reservations/new"
-= link_to 'Reservation for guests', "reservations/newGuest"
-%br
-= link_to 'Edit Reservation', "reservations/edit"
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      - Menu.all.where(mealType: 'dinner', date: Time.now.strftime("%Y/%m/%d")).each do |item|
+        %tr
+          %td=item.firstCourse
+          %td=item.secondCourse
+          %td=item.sideDish
+          %td=item.notes
+%div
+  %br
+  - menuLunchId=Menu.all.where(mealType: 'lunch', date: Time.now.strftime("%Y/%m/%d")).take.id
+  - menuDinnerId=Menu.all.where(mealType: 'dinner', date: Time.now.strftime("%Y/%m/%d")).take.id
+  = link_to 'Reservation for you Lunch', new_menu_reservation_path(menuLunchId)
+  %br
+    = link_to 'Reservation for you Dinner', new_menu_reservation_path(menuDinnerId)
+  %br
+  = link_to 'Reservation for guests Lunch', menu_reservations_newGuest_path(menuLunchId)
+  %br
+    = link_to 'Reservation for guests Dinner', menu_reservations_newGuest_path(menuDinnerId)
+  %br
+  - Reservation.all.where(student: current_user.id, menu: menuLunchId).each do |item|
+    = link_to "Info Reservation of #{item.typeReservation} for Lunch", menu_reservation_path(item.menu_id, item.id)
+    %br
+  %br
+  - Reservation.all.where(student: current_user.id, menu: menuDinnerId).each do |item|
+    = link_to "Info Reservation of #{item.typeReservation} for Dinner", menu_reservation_path(item.menu_id, item.id)
+    %br

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 class MenusController < ApplicationController
   before_action :authenticate_user!
+
   def index
     authorize! :crud, :Menu
   end
@@ -53,8 +55,7 @@ class MenusController < ApplicationController
     if(data[:date].to_date() < Date.today.at_beginning_of_week && date[:date].to_date() > Date.today.at_beginning_of_week &&
       (data[:mealType] == "lunch" || data[:mealType] == "dinner"))
       flash[:warning] = 'Incorrect selected date or meal'
-    else 
-      data[:canteen] = current_user
+    else
       @menu = Menu.find(params[:id])
       res = @menu.update(data)
       if res

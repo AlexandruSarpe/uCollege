@@ -33,4 +33,4 @@
           = f.text_area(:'notes', cols: "50", rows: "2")
 
   = f.submit "Update Menu"
-  = link_to "Cancel", menus_path
+  = link_to "Cancel", menu_path(@menu.id)

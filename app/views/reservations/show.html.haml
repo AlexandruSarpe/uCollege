@@ -1,1 +1,45 @@
-%h1 show page Reservation
+%h1= "Canteen reservation of #{@reservation.typeReservation.capitalize} of #{@menu.date.strftime("%A %d/%m/%Y")}"
+= link_to 'Back', reservations_path
+%div
+  %h2= "Menu #{@menu.mealType.capitalize}"
+  %table
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      %tr
+        %td=@menu.firstCourse
+        %td=@menu.secondCourse
+        %td=@menu.sideDish
+        %td=@menu.notes
+%div
+  %h2= "Menu Selected"
+  %table
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      %tr
+        - if @reservation.firstCourseAlternatives == ""
+          %td=@menu.firstCourse
+        - else
+          %td=@reservation.firstCourseAlternatives
+        - if @reservation.secondCourseAlternatives == ""
+          %td=@menu.secondCourse
+        - else
+          %td=@reservation.secondCourseAlternatives
+        - if @reservation.sideDishAlternatives == ""
+          %td=@menu.sideDish
+        - else
+          %td=@reservation.sideDishAlternatives
+        %td=@reservation.notes
+%div
+  %br
+  = link_to "Edit Reservation", edit_menu_reservation_path(@menu.id, @reservation.id)
+  = link_to "Delete Reservation", menu_reservation_path(@menu.id, @reservation.id), :method => :delete

@@ -13,7 +13,7 @@
   %br
   = link_to 'Books', books_path(current_user)
   %br
-  = link_to 'Canteen', "reservations"
+  = link_to 'Canteen',  reservations_path
 
 - if current_user.instance_of? Canteen
   = link_to 'View menus', menus_path

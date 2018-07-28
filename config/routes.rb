@@ -31,10 +31,11 @@ Rails.application.routes.draw do
 
     # Menus
     get '/menus/indexAll', to:  'menus#indexAll'
+    get '/reservations', to: 'reservations#index'
     resources :menus do
       # Reservations
+      get '/reservations/newGuest', to: 'reservations#newGuest'
       resources :reservations
-      get '/newGuest', to: 'reservations#newGuest'
     end
   end
   # root for non authenticated users

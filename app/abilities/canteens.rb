@@ -5,5 +5,7 @@ Canard::Abilities.for(:canteen) do
   # TODO: check these permissions when the corresponding model will be created
   can :crud, :Menu
   can :read, :Canteen
+  can :update, :Canteen
   can :read, :Reservation
+  can :create, :Reservation
 end

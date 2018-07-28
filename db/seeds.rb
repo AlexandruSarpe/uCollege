@@ -9,10 +9,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Secretary.create first_name: 'secretary', last_name: 'user',
-                 username: 'secretary', email: 'test_sec@email.com', password: 'testing'
+               username: 'secretary', email: 'test_sec@email.com', password: 'testing'
 
 stud=Student.create first_name: 'student', last_name: 'user',
                username: 'student', email: 'test_stud@email.com', password: 'testing'
+
+Student.create first_name: 'student1', last_name: 'user1',
+               username: 'student1', email: 'test_stud1@email.com', password: 'testing'
 
 cant=Canteen.create first_name: 'canteen', last_name: 'user',
                username: 'canteen', email: 'test_cant@email.com', password: 'testing'
@@ -22,6 +25,12 @@ menu1=Menu.create date: '25/07/2018', mealType: 'lunch', firstCourse: 'Carbonara
 
 Menu.create date: '25/07/2018', mealType: 'dinner', firstCourse: 'Amatriciana', 
             secondCourse: 'Manzo', sideDish: 'faggiolini', notes: 'vuoto', canteen_id: cant.id
+
+Menu.create date: "2018-07-28", mealType: "lunch", firstCourse: "Pasta fredda", 
+            secondCourse: "Arista con olive", sideDish: "Insalata mista", notes: "Vuoto", canteen_id: cant.id
+            
+Menu.create date: "2018-07-28", mealType: "dinner", firstCourse: "Pasta con zucchine e gamberetti", 
+            secondCourse: "Cordon bleu", sideDish: "Verdure lesse miste", notes: "Niente", canteen_id: cant.id
 
 Reservation.create typeReservation: 'student', firstCourseAlternatives: 'pasta al sugo',
                    sideDishAlternatives: "fettina", notes: 'niente', student_id: stud.id, menu_id: menu1.id

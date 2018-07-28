@@ -53,6 +53,8 @@
                                   GET    /courses/student/:id(.:format)                                                           courses#enrolled
 auth_google_oauth2_drive_callback GET    /auth/google_oauth2_drive/callback(.:format)                                             omniauth_callbacks#google_oauth2_drive
                    menus_indexAll GET    /menus/indexAll(.:format)                                                                menus#indexAll
+                     reservations GET    /reservations(.:format)                                                                  reservations#index
+       menu_reservations_newGuest GET    /menus/:menu_id/reservations/newGuest(.:format)                                          reservations#newGuest
                 menu_reservations GET    /menus/:menu_id/reservations(.:format)                                                   reservations#index
                                   POST   /menus/:menu_id/reservations(.:format)                                                   reservations#create
              new_menu_reservation GET    /menus/:menu_id/reservations/new(.:format)                                               reservations#new
@@ -61,7 +63,6 @@ auth_google_oauth2_drive_callback GET    /auth/google_oauth2_drive/callback(.:fo
                                   PATCH  /menus/:menu_id/reservations/:id(.:format)                                               reservations#update
                                   PUT    /menus/:menu_id/reservations/:id(.:format)                                               reservations#update
                                   DELETE /menus/:menu_id/reservations/:id(.:format)                                               reservations#destroy
-                    menu_newGuest GET    /menus/:menu_id/newGuest(.:format)                                                       reservations#newGuest
                             menus GET    /menus(.:format)                                                                         menus#index
                                   POST   /menus(.:format)                                                                         menus#create
                          new_menu GET    /menus/new(.:format)                                                                     menus#new

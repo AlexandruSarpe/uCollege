@@ -1,5 +1,5 @@
 %h1 Insert menus of this week
-= form_for @menu, url: "/menus", html: { method: :post } do |f|
+= form_for @menu, url: menus_path, html: { method: :post } do |f|
   %table
     %tfoot
       %tr
