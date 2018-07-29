@@ -1,5 +1,6 @@
 %h1= "Edit canteen reservation of #{@reservation.typeReservation.capitalize} of #{@menu.date.strftime("%A %d/%m/%Y")}"
 = link_to 'Back', :back
+-# Mostro il menu
 %div
   %h2= "Menu #{@menu.mealType.capitalize}"
   %table
@@ -15,6 +16,7 @@
         %td=@menu.secondCourse
         %td=@menu.sideDish
         %td=@menu.notes
+-# Mostro i campi per effettuare le modifiche
 %div
   %h3= "Reserve for #{@menu.mealType.capitalize}"
   %h3 To accept the menu proposed by the canteen checked only reserve otherwise choose an alternative to the dish you do not want

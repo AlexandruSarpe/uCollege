@@ -1,10 +1,11 @@
 %h1= "Canteen reservation of #{@menu.date.strftime("%A %d/%m/%Y")}"
-- if current_user.instance_of? Canteen
-  %h1 Make reservations in this way ONLY if the student has a problem with the system
+-# Comunco messaggi differenti a seconda della tipologia di utente
 - if current_user.instance_of? Student
   = link_to 'Back', :back
 - if current_user.instance_of? Canteen
+  %h1 Make reservations in this way ONLY if the student has a problem with the system
   = link_to 'Back', menu_path(@menu.id)
+-# Mostro il menu
 %div
   %h2= "Menu #{@menu.mealType.capitalize}"
   %table
@@ -23,6 +24,7 @@
 %div
   %h3= "Reserve for #{@menu.mealType.capitalize}"
   %h3 To accept the menu proposed by the canteen checked only reserve otherwise choose an alternative to the dishes you do not want
+  -# Comunco messaggi differenti a seconda della tipologia di utente
   -if current_user.instance_of? Canteen
     %h3 To delete a reservation insert the student's login email address, indicate if you want to delete the student's or guest's reservation, at the end check the "delete" button
     %h3 To add a reservation insert the student's login email address, indicate if the reservation is of the student or of a guest, at the end enter the last number in ascending order of the guest for this student. If something goes wrong change number of the guest.
@@ -31,6 +33,7 @@
       %tfoot
         %tr
           %td
+            -# Modifico leggermente il form secondo la tipologia di utente
             - if current_user.instance_of? Student
               = f.check_box :typeReservation, {}, "student", "none"
               = f.label :Reserve
@@ -49,6 +52,7 @@
                 %input{type: "checkbox", name: "delete", value: "yes"}
                 %label Delete Reservation
         %tr
+          -# Mostro le alternative fisse del menu
           %td
             %h4 Alternatives first course
             = f.radio_button :firstCourseAlternatives, 'Riso in bianco'

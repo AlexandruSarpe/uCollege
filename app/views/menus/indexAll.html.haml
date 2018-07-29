@@ -1,5 +1,7 @@
 %h1= "List of all menus of canteen"
 = link_to "Back", authenticated_root_path
+-# Mostro tutti i menu presenti nel db ordinati
+-# per data, dal piu' recente al piu' datato
 - Menu.pluck(:date).uniq.sort.reverse.each do |data|
   - Menu.all.where(mealType: 'lunch', date: data).each do |item|
     %h2= "Menu of #{data.strftime("%A %d/%m/%Y")}"

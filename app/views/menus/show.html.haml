@@ -1,5 +1,6 @@
 %h1 Details about Menu of #{@menu.date.strftime("%A, %Y/%m/%d")}
 = link_to "Back", menus_path
+-# Mostro il menu
 %div
   %h2= "Menu #{@menu.mealType.capitalize}"
   %table#menu
@@ -19,9 +20,11 @@
           %td=link_to "Edit", edit_menu_path(@menu.id)
           %td=link_to "Delete", menu_path(@menu.id), :method => :delete
   %br
+  -# Mostro il link per effettuare eventuali prenotazioni
   - if @menu.date.to_date() == Date.today
     %label A student needs help?
     = link_to "Reservation", new_menu_reservation_path(@menu.id)
+-# Mostro le ordinazioni
 %div
   %h1 Order to prepare
   %table#reservations
@@ -43,6 +46,9 @@
       %tr
         %td= @menu.sideDish
         %td= Reservation.all.where(menu: @menu, sideDishAlternatives: '').count
+      %tr
+        %th Alternatives
+        %th
       %tr
         %td Riso in bianco
         %td= Reservation.all.where(menu: @menu, firstCourseAlternatives: 'Riso in bianco').count
@@ -79,6 +85,7 @@
       %tr
         %td Pomodori
         %td= Reservation.all.where(menu: @menu, sideDishAlternatives: 'Pomodori').count
+-# Mostro le note degli utenti
 %div
   %h2 Notes
   %table#notes
@@ -95,7 +102,7 @@
             %td= stud.first_name
             %td= stud.last_name
             %td= reservation.notes
-
+-# Mostro il numero degli ospiti per studente
 %div
   %h2 Guests
   %table#guests
