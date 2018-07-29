@@ -1,5 +1,6 @@
 %h1= "Canteen reservation of #{@reservation.typeReservation.capitalize} of #{@menu.date.strftime("%A %d/%m/%Y")}"
 = link_to 'Back', reservations_path
+-# Mostro il menu della mensa
 %div
   %h2= "Menu #{@menu.mealType.capitalize}"
   %table
@@ -15,6 +16,7 @@
         %td=@menu.secondCourse
         %td=@menu.sideDish
         %td=@menu.notes
+-# Mostro il menu scelto dall'utente
 %div
   %h2= "Menu Selected"
   %table
@@ -39,6 +41,7 @@
         - else
           %td=@reservation.sideDishAlternatives
         %td=@reservation.notes
+-# Mostro i link corretti per la modifica o eliminazione
 %div
   %br
   = link_to "Edit Reservation", edit_menu_reservation_path(@menu.id, @reservation.id)
