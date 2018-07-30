@@ -37,6 +37,12 @@ Rails.application.routes.draw do
       get '/reservations/newGuest', to: 'reservations#newGuest'
       resources :reservations
     end
+
+    #Forms
+    resources :forms do
+      get 'showResult', to: 'forms#showResult'
+    end
+
   end
   # root for non authenticated users
   root 'home#index'

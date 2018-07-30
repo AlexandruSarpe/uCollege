@@ -1,5 +1,8 @@
 %h1= "Menu canteen of  #{Time.now.strftime("%A %d/%m/%Y")}"
 = link_to 'Back', authenticated_root_path
+%br
+- Form.all.where("dateEnd > #{Date.today}").each do |elm|
+  = link_to "Questionnaire", form_path(elm.id)
 -# Mostro il menu del pranzo
 %div
   -# Ottengo i riferimenti ai menu

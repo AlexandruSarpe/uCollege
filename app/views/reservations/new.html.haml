@@ -2,7 +2,7 @@
 -# Comunco messaggi differenti a seconda della tipologia di utente
 - if current_user.instance_of? Student
   = link_to 'Back', :back
-- if current_user.instance_of? Canteen
+- if current_user.instance_of? Canteen || Secretary
   %h1 Make reservations in this way ONLY if the student has a problem with the system
   = link_to 'Back', menu_path(@menu.id)
 -# Mostro il menu
@@ -25,7 +25,7 @@
   %h3= "Reserve for #{@menu.mealType.capitalize}"
   %h3 To accept the menu proposed by the canteen checked only reserve otherwise choose an alternative to the dishes you do not want
   -# Comunco messaggi differenti a seconda della tipologia di utente
-  -if current_user.instance_of? Canteen
+  -if current_user.instance_of? Canteen || Secretary
     %h3 To delete a reservation insert the student's login email address, indicate if you want to delete the student's or guest's reservation, at the end check the "delete" button
     %h3 To add a reservation insert the student's login email address, indicate if the reservation is of the student or of a guest, at the end enter the last number in ascending order of the guest for this student. If something goes wrong change number of the guest.
   = form_for @reservation, url: menu_reservations_path, html: { method: :post } do |f|
@@ -38,7 +38,7 @@
               = f.check_box :typeReservation, {}, "student", "none"
               = f.label :Reserve
             - else 
-              -if current_user.instance_of? Canteen
+              -if current_user.instance_of? Canteen || Secretary
                 %input{type: "textarea", name: "email", cols: "25", required: true}
                 %label Email Student
                 = f.radio_button :typeReservation, 'student'

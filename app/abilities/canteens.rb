@@ -6,6 +6,7 @@ Canard::Abilities.for(:canteen) do
   can :crud, :Menu
   can :read, :Canteen
   can :update, :Canteen
+  can :crud, :Form
   can :read, :Reservation
   can :create, :Reservation
 end

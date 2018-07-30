@@ -1,0 +1,24 @@
+%h1= "Update inserted links of google form, Started questionnaire: #{@form.dateStart} -> End: #{@form.dateEnd}"
+-# Mostro il Form per inserire il link(embedded) al form
+= form_for @form, url: form_path(@form), html: { method: :put } do |f|
+  %table
+    %tfoot
+      %tr
+        %td
+          = f.label :'Date Start'
+          = f.date_field(:dateStart, min: Date.today, required: true)
+      %tr
+        %td
+          = f.label :'Date End'
+          = f.date_field(:dateEnd, min: Date.today, required: true)
+      %tr
+        %td
+          = f.label :'Url to embedded google form'
+          = f.text_area(:'linkToForm', cols: "150", rows: "2", required: true)
+      %tr
+        %td
+          = f.label :'Url to embedded goole sheet referring to the form'
+          = f.text_area(:'linkToResult', cols: "150", rows: "2", required: true)
+  =f.submit "Update Questionnaire"
+= link_to "Back", forms_path
+  

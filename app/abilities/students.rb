@@ -11,5 +11,6 @@ Canard::Abilities.for(:student) do
   can :crud, :Event, official: false
   can :crud, :Reservation
   can :read, :Menu
+  can :read, :Form
   can %i[view update], :Event, official: true
 end

@@ -85,7 +85,7 @@ class ReservationsController < ApplicationController
       end
     end
     # Controlla se sia stato effettivamente selezionato
-    # il tipo di prenotazione (forse meglio un or con !=)
+    # il tipo di prenotazione
     if data[:typeReservation].include? "none"
       # Comunica un messaggio
       flash[:notice] = 'You have chosen not to make a reservation'
@@ -141,8 +141,8 @@ class ReservationsController < ApplicationController
     # Ottiene i parametri del menu passati dalla pagina web
     data = params.require(:reservation).permit(:typeReservation, :firstCourseAlternatives, :secondCourseAlternatives, :sideDishAlternatives, :sideDish, :notes, :student, :menu)
     # Controlla se sia stato effettivamente selezionato
-    # il tipo di prenotazione (forse meglio un or con !=)
-    if data[:typeReservation] == "none"
+    # il tipo di prenotazione
+    if data[:typeReservation].include? "none"
       flash[:notice] = 'To cancel the reservation click on the delete link'
     else
       # Trova la prenotazione da modificare
