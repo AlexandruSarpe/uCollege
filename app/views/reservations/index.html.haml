@@ -13,50 +13,53 @@
     -# Comunico un messaggio
     %h3 Menu non ancora pubblicati
   - else
-    %h3 Menu Lunch
-    %table#menuLunch
-      %thead
-        %tr
-          %th First Course
-          %th Second Course
-          %th Side Dish
-          %th Note
-      %tfoot
-        - Menu.all.where(mealType: 'lunch', date: Time.now.strftime("%Y/%m/%d")).each do |item|
+    -# Mostro il menu del pranzo
+    - if menuLunch.present?
+      %h3 Menu Lunch
+      %table#menuLunch
+        %thead
           %tr
-            %td=item.firstCourse
-            %td=item.secondCourse
-            %td=item.sideDish
-            %td=item.notes
+            %th First Course
+            %th Second Course
+            %th Side Dish
+            %th Note
+        %tfoot
+          - Menu.all.where(mealType: 'lunch', date: Time.now.strftime("%Y/%m/%d")).each do |item|
+            %tr
+              %td=item.firstCourse
+              %td=item.secondCourse
+              %td=item.sideDish
+              %td=item.notes
     -# Mostro il menu della cena
-    %h3 Menu Dinner
-    %table#menuDinner
-      %thead
-        %tr
-          %th First Course
-          %th Second Course
-          %th Side Dish
-          %th Note
-      %tfoot
-        - Menu.all.where(mealType: 'dinner', date: Time.now.strftime("%Y/%m/%d")).each do |item|
+    - if menuDinner.present?
+      %h3 Menu Dinner
+      %table#menuDinner
+        %thead
           %tr
-            %td=item.firstCourse
-            %td=item.secondCourse
-            %td=item.sideDish
-            %td=item.notes
+            %th First Course
+            %th Second Course
+            %th Side Dish
+            %th Note
+        %tfoot
+          - Menu.all.where(mealType: 'dinner', date: Time.now.strftime("%Y/%m/%d")).each do |item|
+            %tr
+              %td=item.firstCourse
+              %td=item.secondCourse
+              %td=item.sideDish
+              %td=item.notes
     -# Mostro i link per effettuare le prenotazioni
     -# Mostro i link per vedere le informazioni delle prenotazioni effettuate
     %div
       %br
       -# Controllo se non è scaduto il tempo per la prenotazione
-      - if Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 11:00"
+      - if menuLunch.present? &&Time.now.strftime("%d/%m/%Y %H:%M") > Time.now.strftime("%d/%m/%Y")+" 11:00"
         %br
         = link_to 'Reservation for you Lunch', new_menu_reservation_path(menuLunch.id)
         %br
         = link_to 'Reservation for guests Lunch', menu_reservations_newGuest_path(menuLunch.id)
         %br
       -# Controllo se non è scaduto il tempo per la prenotazione
-      - if Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 18:00"
+      - if menuDinner.present? && Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 18:00"
         %br
         = link_to 'Reservation for you Dinner', new_menu_reservation_path(menuDinner.id)
         %br

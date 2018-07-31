@@ -12,19 +12,21 @@ class ReservationsController < ApplicationController
   # di una nuova prenotazione per uno studente
   def new
     authorize! :create, :Reservation
-    # Controllo se non è scaduto il tempo per la prenotazione
-    if Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 11:00"
+    @menu = Menu.find(params[:menu_id])
+    # Se sono l'utente mensa posso effettuare
+    # prenotazioni anche dopo il termine del tempo
+    if current_user.instance_of? Canteen
       @menu = Menu.find(params[:menu_id])
       @reservation = Reservation.create
-    else
-      # Se sono l'utente mensa posso effettuare
-      # prenotazioni anche dopo il termine del tempo
-      if current_user.instance_of? Canteen
-        @menu = Menu.find(params[:menu_id])
+    end
+    if current_user.instance_of? Student
+      # Controllo se non è scaduto il tempo per la prenotazione
+      if (@menu.mealType=="lunch" && Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 11:00") ||
+        (@menu.mealType=="dinner" && Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 18:00")
         @reservation = Reservation.create
       else
-        flash[:notice] = 'Time for reservations terminated'
-        redirect_to reservations_path
+          flash[:notice] = 'Time for reservations terminated'
+          redirect_to reservations_path
       end
     end
   end
@@ -33,13 +35,22 @@ class ReservationsController < ApplicationController
     # di una nuova prenotazione per un ospite
   def newGuest
     authorize! :create, :Reservation
-    # Controllo se non è scaduto il tempo per la prenotazione
-    if Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 18:00"
+    @menu = Menu.find(params[:menu_id])
+    # Se sono l'utente mensa posso effettuare
+    # prenotazioni anche dopo il termine del tempo
+    if current_user.instance_of? Canteen
       @menu = Menu.find(params[:menu_id])
       @reservation = Reservation.create
-    else
-      flash[:notice] = 'Time for reservations terminated'
-      redirect_to reservations_path
+    end
+    if current_user.instance_of? Student
+      # Controllo se non è scaduto il tempo per la prenotazione
+      if (@menu.mealType=="lunch" && Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 11:00") ||
+         (@menu.mealType=="dinner" && Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 18:00")
+        @reservation = Reservation.create
+      else
+        flash[:notice] = 'Time for reservations terminated'
+        redirect_to reservations_path
+      end
     end
   end
 

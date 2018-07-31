@@ -3,7 +3,8 @@
 %h3 The start and end date indicate only one day, it is not possible to indicate hours and minutes
 %h3 Insert the link to the iframe of the google form created for the questionnaire
 %h3 Insert the link to the iframe of the google sheet referring to the created questionnaire
-%h3= "To get the iframe from google click on the \"send\" button and then on the \"< >\" icon you will see a url whose first words are <iframe src ..."
+%h3= "To get the iframe from google form click on the \"send\" button and then on the \"< >\" icon you will see a url whose first words are <iframe src ..."
+%h3= "To get the iframe from google sheet go to File->Publish to the Web and then click on the \"HTML to embed in a page\" chose \"entire document\" end click on \"Publishing\" button now you will see a url whose first words are <iframe src ..."
 = form_for @form, url: forms_path, html: { method: :post } do |f|
   %table
     %tfoot
