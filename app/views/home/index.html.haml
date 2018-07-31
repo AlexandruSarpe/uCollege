@@ -1,14 +1,10 @@
 %h2 Sign Up
 %br
-  - menuLunch=Menu.all.where(mealType: 'lunch', date: Time.now.strftime("%Y/%m/%d")).take
-  - menuDinner=Menu.all.where(mealType: 'dinner', date: Time.now.strftime("%Y/%m/%d")).take
-  - if menuLunch.present?
-    = link_to "Menu Lunch of Today", menu_path(menuLunch.id)
-  - if menuDinner.present?
-    = link_to "Menu Lunch of Today", menu_path(menuDinner.id)
-%br
 = link_to 'Sign Up', new_user_registration_path
 %br
 %h2 Log In
-%br
 = link_to 'Login', new_user_session_path
+%br
+%h2 Menu
+%br
+= link_to "Weekly menu", menus_path

@@ -52,7 +52,7 @@
     %div
       %br
       -# Controllo se non è scaduto il tempo per la prenotazione
-      - if menuLunch.present? &&Time.now.strftime("%d/%m/%Y %H:%M") > Time.now.strftime("%d/%m/%Y")+" 11:00"
+      - if menuLunch.present? &&Time.now.strftime("%d/%m/%Y %H:%M") < Time.now.strftime("%d/%m/%Y")+" 11:00"
         %br
         = link_to 'Reservation for you Lunch', new_menu_reservation_path(menuLunch.id)
         %br

@@ -18,10 +18,11 @@
           %td= item.secondCourse
           %td= item.sideDish
           %td= item.notes
-          -if day == Date.today
-            %td= link_to "Edit", edit_menu_path(item.id)
-            %td= link_to "Delete", menu_path(item.id), :method => :delete
-          %td= link_to "Info Reservations", menu_path(item.id)
+          - if current_user.instance_of? Canteen
+            -if day == Date.today
+              %td= link_to "Edit", edit_menu_path(item.id)
+              %td= link_to "Delete", menu_path(item.id), :method => :delete
+            %td= link_to "Info Reservations", menu_path(item.id)
 
   %h3 Menu Dinner
   %table#menuDinner
@@ -38,7 +39,8 @@
           %td= item.secondCourse
           %td= item.sideDish
           %td= item.notes
-          -if day == Date.today
-            %td= link_to "Edit", edit_menu_path(item.id)
-            %td= link_to "Delete", menu_path(item.id), :method => :delete
-          %td= link_to "Info Reservations", menu_path(item.id)
+          - if current_user.instance_of? Canteen
+            -if day == Date.today
+              %td= link_to "Edit", edit_menu_path(item.id)
+              %td= link_to "Delete", menu_path(item.id), :method => :delete
+            %td= link_to "Info Reservations", menu_path(item.id)

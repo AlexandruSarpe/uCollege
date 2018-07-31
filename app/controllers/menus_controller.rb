@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 class MenusController < ApplicationController
   before_action :authenticate_user!
+	skip_before_action :authenticate_user!, only: [:index]
 
   # Permette la visualizzazione di tutti i menu della settimana corrente
   def index
-    authorize! :crud, :Menu
+    authorize! :read, :Menu
   end
 
   # Permette la visualizzazione di tutti i menu
