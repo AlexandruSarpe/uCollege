@@ -1,4 +1,4 @@
-%h2 #{current_user.username}'s Dashboard
+%h2 #{current_user.username.capitalize}'s Dashboard
 
 - if current_user.instance_of? Secretary
   = link_to 'Manage Users', users_path
@@ -12,7 +12,21 @@
   = link_to 'Courses', "courses/student/#{current_user.id}"
   %br
   = link_to 'Books', books_path(current_user)
+  %br
+  = link_to 'Canteen',  reservations_path
 
+- if current_user.instance_of? Canteen
+  = link_to 'View menus', menus_path
+  %br
+  = link_to 'Add menus', new_menu_path
+  %br
+  = link_to 'List of all menus',  menus_indexAll_path
+  %br
+  = link_to 'Add questionnaire', new_form_path
+  %br
+  = link_to 'View info of questionnaires', forms_path
+  -#= %h3 'view reservations of the day'
+  
 %br
 = link_to "About  #{current_user.username}", "/new/user/#{current_user.id}"
 

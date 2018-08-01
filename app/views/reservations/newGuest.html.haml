@@ -1,0 +1,76 @@
+%h1= "Canteen reservation for Guest of #{@menu.date.strftime("%A %d/%m/%Y")}"
+= link_to 'Back', :back
+%div
+  %h2= "Menu #{@menu.mealType.capitalize}"
+  %table
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      %tr
+        %td=@menu.firstCourse
+        %td=@menu.secondCourse
+        %td=@menu.sideDish
+        %td=@menu.notes
+%div
+  %h3= "Reserve for #{@menu.mealType.capitalize}"
+  %h3 To accept the menu proposed by the canteen checked only reserve otherwise choose an alternative to the dish you do not want
+  = form_for @reservation, url: menu_reservations_path, html: { method: :post } do |f|
+    %table
+      %tfoot
+        %tr
+          %td
+            = f.check_box :typeReservation, {}, "guest#{@reservation.id}", "none"
+            = f.label :Reserve
+            %input{type: "number", name: "number", min: "1", max: "10", required: true}
+            %label Guest number
+        %tr
+          %td
+            %h4 Alternatives first course
+            = f.radio_button :firstCourseAlternatives, 'Riso in bianco'
+            = f.label :'Riso in bianco'
+            = f.radio_button :firstCourseAlternatives, 'Riso al sugo di pomodoro'
+            = f.label :'Riso al sugo di pomodoro'
+            = f.radio_button :firstCourseAlternatives, 'Pasta in bianco'
+            = f.label :'Pasta in bianco'
+            = f.radio_button :firstCourseAlternatives, 'Pasta al sugo di pomodoro'
+            = f.label :'Pasta al sugo di pomodoro'
+            = f.radio_button :firstCourseAlternatives, '', checked: true
+            = f.label :"Nothing"
+        %tr
+          %td
+            %h4 Alternatives second course
+            = f.radio_button :secondCourseAlternatives, "Fettina ai ferri (bovino o pollame)"
+            = f.label :"Fettina ai ferri (bovino o pollame)"
+            = f.radio_button :secondCourseAlternatives, 'Cordon bleu'
+            = f.label :'Cordon bleu'
+            = f.radio_button :secondCourseAlternatives, 'Tonno in scatola'
+            = f.label :'Tonno in scatola'
+            = f.radio_button :secondCourseAlternatives, 'Mozzarella'
+            = f.label :'Mozzarella'
+            = f.radio_button :secondCourseAlternatives, 'Piatto freddo solo salume'
+            = f.label :'Piatto freddo solo salume'
+            = f.radio_button :secondCourseAlternatives, 'Piatto freddo salume e fromaggio'
+            = f.label :'Piatto freddo salume e fromaggio'
+            = f.radio_button :secondCourseAlternatives, "Uova all'occhio di bue"
+            = f.label :"Uova all'occhio di bue"
+            = f.radio_button :secondCourseAlternatives, '', checked: true
+            = f.label :"Nothing"
+        %tr
+          %td
+            %h4 Alternatives side dish
+            = f.radio_button :sideDishAlternatives, 'Pomodori'
+            = f.label :'Pomodori'
+            = f.radio_button :sideDishAlternatives, '', checked: true
+            = f.label :"Nothing"
+        %tr
+          %td
+            %h4 Notes
+            = f.text_area(:'notes', cols: "50", rows: "2")
+        %tr
+          %td
+            = f.submit "Send Reservation"
+            %input{ :type=>"reset", :value=>"Reset", :name=>"reset" }

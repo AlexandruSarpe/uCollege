@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   alias devise_current_user current_user
   alias devise_user_signed_in? user_signed_in?
 
+  # if the user can't perform the action go back to the dashboard
   rescue_from CanCan::AccessDenied do |exception|
     flash[:warning] = exception.message
     redirect_to root_path
@@ -11,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # rewriting devise current_user and user_signed_in to support both Devise and independent omniauth
   def current_user
     if devise_current_user.nil?
       return User.find(session[:user_id]) unless session[:user_id].nil?

@@ -1,0 +1,21 @@
+%h1 Questionnaires
+= link_to "Back", authenticated_root_path
+-# Mostro tutti i menu presenti nel db ordinati
+-# per data, dal piu' recente al piu' datato
+- Form.all.each do |elm|
+  %h3= "Questionnaire of #{elm.dateStart}"
+  %table#questionnaires
+    %thead
+      %tr
+        %th Date Start
+        %th Date End
+        %th Form
+        %th Form result
+    %tfoot
+      %tr
+        %td= elm.dateStart
+        %td= elm.dateEnd
+        %td= link_to "Form", form_path(elm.id)
+        %td= link_to "Form result", form_showResult_path(elm.id)
+        %td= link_to "Edit", edit_form_path(elm.id)
+        %td= link_to "Delete", form_path(elm.id), :method => :delete

@@ -1,0 +1,46 @@
+%h1= "Menus of canteen from #{Date.today.at_beginning_of_week.strftime("%d/%m/%Y")} to #{Date.today.at_end_of_week.strftime("%d/%m/%Y")}"
+= link_to "Back", authenticated_root_path
+-# Mostro i menu odierni
+- (Date.today.at_beginning_of_week..Date.today.at_end_of_week).map.each do |day|
+  %h2= day.strftime("%A, %d/%m/%Y")
+  %h3 Menu Lunch
+  %table#menuLunch
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      - Menu.all.where(date: day.strftime("%Y/%m/%d"), mealType: 'lunch').each do |item|
+        %tr
+          %td= item.firstCourse
+          %td= item.secondCourse
+          %td= item.sideDish
+          %td= item.notes
+          - if current_user.instance_of? Canteen
+            -if day == Date.today
+              %td= link_to "Edit", edit_menu_path(item.id)
+              %td= link_to "Delete", menu_path(item.id), :method => :delete
+            %td= link_to "Info Reservations", menu_path(item.id)
+
+  %h3 Menu Dinner
+  %table#menuDinner
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      - Menu.all.where(date: day.strftime("%Y/%m/%d"), mealType: 'dinner').each do |item|
+        %tr
+          %td= item.firstCourse
+          %td= item.secondCourse
+          %td= item.sideDish
+          %td= item.notes
+          - if current_user.instance_of? Canteen
+            -if day == Date.today
+              %td= link_to "Edit", edit_menu_path(item.id)
+              %td= link_to "Delete", menu_path(item.id), :method => :delete
+            %td= link_to "Info Reservations", menu_path(item.id)

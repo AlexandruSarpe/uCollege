@@ -1,0 +1,122 @@
+%h1 Details about Menu of #{@menu.date.strftime("%A, %Y/%m/%d")}
+= link_to "Back", menus_path
+-# Mostro il menu
+%div
+  %h2= "Menu #{@menu.mealType.capitalize}"
+  %table#menu
+    %thead
+      %tr
+        %th First Course
+        %th Second Course
+        %th Side Dish
+        %th Note
+    %tfoot
+      %tr
+        %td=@menu.firstCourse
+        %td=@menu.secondCourse
+        %td=@menu.sideDish
+        %td=@menu.notes
+        - if @menu.date.to_date() >= Date.today.at_beginning_of_week && @menu.date.to_date() <= Date.today.at_end_of_week
+          %td=link_to "Edit", edit_menu_path(@menu.id)
+          %td=link_to "Delete", menu_path(@menu.id), :method => :delete
+  %br
+  -# Mostro il link per effettuare eventuali prenotazioni
+  - if @menu.date.to_date() == Date.today
+    %label A student needs help?
+    = link_to "Reservation", new_menu_reservation_path(@menu.id)
+-# Mostro le ordinazioni
+%div
+  %h1 Order to prepare
+  %table#reservations
+    %thead
+      %tr
+        %th
+          %label Number of reservations
+          %lable= Reservation.all.where(menu: @menu).count
+      %tr
+        %th Dish
+        %th Number
+    %tfoot
+      %tr
+        %td= @menu.firstCourse 
+        %td= Reservation.all.where(menu: @menu, firstCourseAlternatives: '').count
+      %tr
+        %td= @menu.secondCourse
+        %td= Reservation.all.where(menu: @menu, secondCourseAlternatives: '').count
+      %tr
+        %td= @menu.sideDish
+        %td= Reservation.all.where(menu: @menu, sideDishAlternatives: '').count
+      %tr
+        %th Alternatives
+        %th
+      %tr
+        %td Riso in bianco
+        %td= Reservation.all.where(menu: @menu, firstCourseAlternatives: 'Riso in bianco').count
+      %tr
+        %td Riso al sugo di pomodoro
+        %td= Reservation.all.where(menu: @menu, firstCourseAlternatives: 'Riso al sugo di pomodoro').count
+      %tr
+        %td Pasta in bianco
+        %td= Reservation.all.where(menu: @menu, firstCourseAlternatives: 'Pasta in bianco').count
+      %tr
+        %td Pasta al sugo di pomodoro
+        %td= Reservation.all.where(menu: @menu, firstCourseAlternatives: 'Pasta al sugo di pomodoro').count
+      %tr
+        %td Fettina ai ferri (bovino o pollame)
+        %td= Reservation.all.where(menu: @menu, secondCourseAlternatives: 'Fettina ai ferri (bovino o pollame)').count
+      %tr
+        %td Cordon bleu
+        %td= Reservation.all.where(menu: @menu, secondCourseAlternatives: 'Cordon bleu').count
+      %tr
+        %td Tonno in scatola
+        %td= Reservation.all.where(menu: @menu, secondCourseAlternatives: 'Tonno in scatola').count
+      %tr
+        %td Mozzarella
+        %td= Reservation.all.where(menu: @menu, secondCourseAlternatives: 'Mozzarella').count
+      %tr
+        %td Piatto freddo solo salume
+        %td= Reservation.all.where(menu: @menu, secondCourseAlternatives: 'Piatto freddo solo salume').count
+      %tr
+        %td Piatto freddo salume e fromaggio
+        %td= Reservation.all.where(menu: @menu, secondCourseAlternatives: 'Piatto freddo salume e fromaggio').count
+      %tr
+        %td Uova all'occhio di bue
+        %td= Reservation.all.where(menu: @menu, secondCourseAlternatives: "Uova all'occhio di bue").count
+      %tr
+        %td Pomodori
+        %td= Reservation.all.where(menu: @menu, sideDishAlternatives: 'Pomodori').count
+-# Mostro le note degli utenti
+%div
+  %h2 Notes
+  %table#notes
+    %thead
+      %tr
+        %th First Name
+        %th Last Name
+        %th Note
+    %tfoot
+      - Reservation.all.where(menu: @menu).each do |reservation|
+      - stud=Student.find(reservation.student_id)
+        - if reservation.notes.present? 
+          %tr
+            %td= stud.first_name
+            %td= stud.last_name
+            %td= reservation.notes
+-# Mostro il numero degli ospiti per studente
+%div
+  %h2 Guests
+  %table#guests
+    %thead
+      %tr
+        %th First Name
+        %th Last Name
+        %th Number guests
+    %tfoot
+      %tr
+      - Student.all.each do |student|
+      - num=Reservation.all.where(menu: @menu, student: student).where('typeReservation like ?', 'guest%').count
+        - if num > 0
+          %tr
+            %td= student.first_name
+            %td= student.last_name
+            %td= num

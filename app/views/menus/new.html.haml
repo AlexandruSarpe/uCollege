@@ -1,0 +1,34 @@
+%h1 Insert menus of this week
+-# Mostro il Form per creare un menu
+= form_for @menu, url: menus_path, html: { method: :post } do |f|
+  %table
+    %tfoot
+      %tr
+        %td
+          = f.label :Date
+          = f.date_field(:date, min: Date.today.at_beginning_of_week, max: Date.today.at_end_of_week, required: true)
+        %td
+          = f.label :Meal
+          = f.select(:mealType, options_for_select(%w(lunch dinner)))
+      %tr
+        %td
+          Enter the menu dishes
+      %tr
+        %td 
+          = f.label :'First Course'
+          = f.text_area(:'firstCourse', cols: "50", rows: "2", required: true)
+      %tr
+        %td 
+          =f.label :'Second Course'
+          =f.text_area(:'secondCourse', cols: "50", rows: "2",required: true)
+      %tr
+        %td 
+          =f.label :'Side Dish'
+          =f.text_area(:'sideDish', cols: "50", rows: "2",required: true)
+      %tr
+        %td 
+          =f.label :'Notes'
+          =f.text_area(:'notes', cols: "50", rows: "2")
+
+  =f.submit "Add Menu"
+= link_to "Back", authenticated_root_path

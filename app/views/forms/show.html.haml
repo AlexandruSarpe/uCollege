@@ -1,0 +1,7 @@
+%h1 Answer the questionnaire below
+- if current_user.instance_of? Canteen || Secretary
+  = link_to "Back", forms_path
+- if current_user.instance_of? Student
+  = link_to "Back", reservations_path
+%br
+= raw @form.linkToForm

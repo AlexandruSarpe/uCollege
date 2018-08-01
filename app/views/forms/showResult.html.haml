@@ -1,0 +1,6 @@
+%h1 Answers to the proposed questionnaire
+= link_to "Back", forms_path
+%br
+= link_to "Questionnaire", form_path(@form.id)
+%br
+  = raw @form.linkToResult
