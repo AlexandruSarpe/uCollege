@@ -7,10 +7,10 @@ Canard::Abilities.for(:student) do
   can %i[create read], :Material
   can :add, :Enrollment
   can :crud, :Book
+  can :crud, :Notification
   # TODO: check these permissions when the corresponding model will be created
   can :crud, :Event, official: false
   can :crud, :Reservation
   can :view, :Menu
-  can :crud, :Notification
   can %i[view update], :Event, official: true
 end

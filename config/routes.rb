@@ -25,8 +25,9 @@ Rails.application.routes.draw do
     # GAB
     get '/redirect', to: 'dashboard#redirect', as: 'redirect'
     get '/callback', to: 'dashboard#callback', as: 'callback'
-    get '/calendar', to: 'dashboard#show_calendar', as: 'show_calendar'
-
+    get '/calendar', to: 'dashboard#calendars', as: 'calendars'
+    #resources :meetings
+    
     
     # courses managing methods
     get '/courses/enrollable', to: 'courses#enrollable'

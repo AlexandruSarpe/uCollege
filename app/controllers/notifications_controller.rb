@@ -23,7 +23,6 @@ class NotificationsController < ApplicationController
         end
     end
 
-#edit,update
     def change_status
       authorize! :update, :Book
       @notification.update(:status => 0)
