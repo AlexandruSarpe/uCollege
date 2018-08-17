@@ -47,18 +47,11 @@ ActiveRecord::Schema.define(version: 2018_08_17_140530) do
     t.datetime "date"
     t.string "notes"
     t.string "type"
-    t.integer "user_id"
+    t.integer "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_events_on_creator_id"
     t.index ["name", "place", "date"], name: "index_events_on_name_and_place_and_date", unique: true
-    t.index ["user_id"], name: "index_events_on_user_id"
-  end
-
-  create_table "meetings", force: :cascade do |t|
-    t.datetime "start"
-    t.datetime "end"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "notifications", force: :cascade do |t|

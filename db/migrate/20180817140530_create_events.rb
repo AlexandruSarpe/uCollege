@@ -6,9 +6,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.datetime :date
       t.string :notes
       t.string :type
-      
-      t.belongs_to :user #chi ha creato
-      
+			t.belongs_to :creator
       t.timestamps
     end
     #chiave-->eventi unici 
