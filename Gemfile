@@ -61,7 +61,6 @@ gem 'gon'
 
 # GAB google-calendar API
 gem 'google-api-client'
-gem 'signet'
 
 #printare calendario
 gem "simple_calendar", "~> 2.0"

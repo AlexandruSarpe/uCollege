@@ -9,6 +9,17 @@
 <body>
 <%= month_calendar do |date| %>
     <%= date %>
-  <% end %>
-
+    <br>
+    <%= @events.each  do |event| %>
+      <% if event.date.to_date==date %>
+        wwwww
+        <%= event.name%>
+        <%= link_to "info about #{event.name}",unofficial_calendar_path(event.id)%>
+        <br>
+      <% end %>
+    <% end %>
+<% end %>
+<%= link_to "create event",new_unofficial_calendar_path%>
+<br>
+<%= link_to "return",root_path%>
 </body>
