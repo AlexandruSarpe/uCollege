@@ -10,16 +10,20 @@
 <%= month_calendar do |date| %>
     <%= date %>
     <br>
-    <%= @events.each  do |event| %>
+    <% @events.each  do |event| %>
       <% if event.date.to_date==date %>
-        wwwww
+        <%= event.date.to_time.strftime("%H:%M")%>
+        <br>
         <%= event.name%>
-        <%= link_to "info about #{event.name}",unofficial_calendar_path(event.id)%>
+        <br>
+
+        <%= link_to "info about #{event.name}",unofficial_event_path(event)%>
         <br>
       <% end %>
     <% end %>
 <% end %>
-<%= link_to "create event",new_unofficial_calendar_path%>
+<%= link_to "new event", new_unofficial_event_path %>
+
 <br>
-<%= link_to "return",root_path%>
+<%= link_to "Home Page",root_path%>
 </body>

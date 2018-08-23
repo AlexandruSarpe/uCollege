@@ -1,0 +1,23 @@
+%h2 Details about #{@event.name}
+%ul#details
+  %li
+    name:
+    = @event.name
+  %li
+    place:
+    = @event.place
+  %li
+    date:
+    = @event.date
+  %li
+    notes:
+    = @event.notes
+  %li
+    creator:
+    = @event.creator 
+%br
+= link_to "Delete", unofficial_event_path(@event), :method => :delete
+%br
+= link_to "Edit", edit_unofficial_event_path(@event)
+%br
+= link_to 'Back to Calendar', unofficial_event_index_path

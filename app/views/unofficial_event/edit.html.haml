@@ -1,0 +1,15 @@
+%h2 "Edit"
+
+= form_tag  unofficial_event_path(@event), method: :put do
+  = label :unofficial_event, :name
+  = text_field :event,:name
+  %br
+  = label :unofficial_event,:place
+  = text_field :unofficial_event,:place
+  %br
+  = label :unofficial_event,:notes
+  = text_field :unofficial_event,:notes
+  %br
+  = submit_tag 'Update Event'
+%br
+= link_to 'Cancel', unofficial_event_path(@event)

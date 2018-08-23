@@ -1,3 +1,3 @@
 class UnofficialEvent < Event
-    belongs_to :student #chi lo crea
+    belongs_to :creator,class_name: 'Student' #chi lo crea
 end

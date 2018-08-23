@@ -9,6 +9,5 @@ Canard::Abilities.for(:secretary) do
   can %i[read update delete add], :Enrollment
   can :create, :Drive_auth
   can %i[create delete read], :Material
-  # TODO: check these permissions when the corresponding model will be created
-  can :crud, :Event, official: true
+  can :crud, :Unofficial_Event
 end

@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     post '/notifications/:id/change_status', to: 'notifications#change_status', as: 'change_status_notifications'
 
     
-    resources :unofficial_calendar
+    resources :unofficial_event
+    
+    resources :official_event
+    
     
     # courses managing methods
     get '/courses/enrollable', to: 'courses#enrollable'
@@ -41,4 +44,8 @@ Rails.application.routes.draw do
 
   get '/auth/google_oauth2/callback', to: 'omniauth_callbacks#google_oauth2'
   get 'auth/failure', to: 'omniauth_callbacks#failure'
+
+  resources :unofficial_event , only:[:index, :show]
+    
+  resources :official_event , only:[:index, :show]
 end
