@@ -1,0 +1,29 @@
+%h2 Details about #{@event.name}
+%ul#details
+  %li
+    type:
+    = @event.type
+  %li
+    name:
+    = @event.name
+  %li
+    place:
+    = @event.place
+  %li
+    date:
+    = @event.date.to_date
+  %li
+    time:
+    = @event.date.to_time.strftime("%H:%M")
+  %li
+    notes:
+    = @event.notes
+  %li
+    creator:
+    = User.find(@event.creator.id).username
+%br
+= link_to "Delete", event_path(@event), :method => :delete
+%br
+= link_to "Edit", edit_event_path(@event)
+%br
+= link_to 'Back to Calendar',events_path

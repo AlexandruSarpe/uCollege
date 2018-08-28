@@ -9,5 +9,6 @@ Canard::Abilities.for(:secretary) do
   can %i[read update delete add], :Enrollment
   can :create, :Drive_auth
   can %i[create delete read], :Material
-  can :crud, :Unofficial_Event
+  can :crud, :Official_Event
+  can %i[read delete], :Unofficial_Event
 end

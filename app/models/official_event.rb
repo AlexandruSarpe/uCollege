@@ -1,3 +1,3 @@
 class OfficialEvent < Event
-    belongs_to :secretary #chi lo crea 
+    belongs_to :creator,class_name: 'Secretary' #chi lo crea
 end

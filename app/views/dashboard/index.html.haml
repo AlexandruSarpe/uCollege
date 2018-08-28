@@ -5,7 +5,10 @@
   %br
   = link_to 'Manage Courses', courses_path
   %br
+  = link_to 'Calendar',events_path
+
   - unless Token.all.any?
+    %br
     = link_to 'Authenticate uCollege Drive Account', '/auth/google_oauth2_drive'
 
 - if current_user.instance_of? Student
@@ -15,7 +18,7 @@
   %br
 
 
-  = link_to 'Calendar', unofficial_event_index_path
+  = link_to 'Calendar', events_path
   %br
 
   

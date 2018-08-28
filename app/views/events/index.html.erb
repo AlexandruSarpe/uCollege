@@ -14,15 +14,12 @@
       <% if event.date.to_date==date %>
         <%= event.date.to_time.strftime("%H:%M")%>
         <br>
-        <%= event.name%>
-        <br>
-
-        <%= link_to "info about #{event.name}",unofficial_event_path(event)%>
+        <%= link_to "#{event.name}",event_path(event)%>
         <br>
       <% end %>
     <% end %>
 <% end %>
-<%= link_to "new event", new_unofficial_event_path %>
+<%= link_to "new event", new_event_path %>
 
 <br>
 <%= link_to "Home Page",root_path%>
