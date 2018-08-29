@@ -36,3 +36,6 @@
 
 #ignoring documentation
 /doc/*
+
+#macdimmedda
+.DS_Store
