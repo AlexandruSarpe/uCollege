@@ -44,6 +44,22 @@ Rails.application.routes.draw do
     get 'showResult', to: 'forms#showResult'
   end
 
+  resources :notifications
+  post '/notifications/:id/change_status', to: 'notifications#change_status', as: 'change_status_notifications'
+
+  resources :events
+
+  # courses managing methods
+  get '/courses/enrollable', to: 'courses#enrollable'
+  resources :courses do
+    resources :materials, only: %i[index show destroy new create]
+    resources :enrollments, only: :index
+    get 'enrollment', to: 'enrollments#show'
+    post 'enrollment/:id', to: 'enrollments#add'
+    delete 'enrollment/:id', to: 'enrollments#destroy'
+  end
+  get 'courses/student/:id', to: 'courses#enrolled'
+  get 'auth/google_oauth2_drive/callback', to: 'omniauth_callbacks#google_oauth2_drive'
   # root for non authenticated users
   root 'home#index'
   resources :menus, only: [:show]

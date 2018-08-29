@@ -1,0 +1,18 @@
+%h2 Edit Event
+
+= form_for @event, url: event_path , html: { method: :put } do |f|
+  = f.label :Name
+  = f.text_field :name
+  %br
+  = f.label :Date
+  = f.datetime_select :date, prompt: true, order: [:day, :month, :year]
+  %br
+  = f.label :Place
+  = f.text_field :place
+  %br
+  = f.label :Notes
+  = f.text_field :notes
+  %br
+  = submit_tag 'Update Event'
+%br
+= link_to 'Cancel', event_path(@event)

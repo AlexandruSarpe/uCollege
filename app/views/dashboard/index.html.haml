@@ -5,7 +5,10 @@
   %br
   = link_to 'Manage Courses', courses_path
   %br
+  = link_to 'Calendar',events_path
+
   - unless Token.all.any?
+    %br
     = link_to 'Authenticate uCollege Drive Account', '/auth/google_oauth2_drive'
 
 - if current_user.instance_of? Student
@@ -14,6 +17,10 @@
   = link_to 'Books', books_path(current_user)
   %br
   = link_to 'Canteen',  reservations_path
+  %br
+  = link_to 'Calendar', events_path
+  %br
+  = link_to 'Notifications', notifications_path
 
 - if current_user.instance_of? Canteen
   = link_to 'View menus', menus_path
@@ -26,7 +33,7 @@
   %br
   = link_to 'View info of questionnaires', forms_path
   -#= %h3 'view reservations of the day'
-  
+
 %br
 = link_to "About  #{current_user.username}", "/new/user/#{current_user.id}"
 

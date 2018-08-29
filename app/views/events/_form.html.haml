@@ -1,0 +1,17 @@
+
+= form_for @event, url: events_path , html: { method: :post } do |f|
+  = f.label :Name
+  = f.text_field :name
+  %br
+  = f.label :Date
+  = f.datetime_select :date, default: Time.now, selected: Time.now
+  %br
+  = f.label :Place
+  = f.text_field :place
+  %br
+  = f.label :Notes
+  = f.text_field :notes
+  %br
+  = f.submit 'Create event'
+  %br
+  = link_to 'Cancel' , events_path

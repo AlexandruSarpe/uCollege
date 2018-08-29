@@ -1,0 +1,19 @@
+%h1 Notifications
+
+%table#notifications
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Status
+  %tbody
+    - @notification.each do |notification|
+      %tr
+        %td= notification.title
+        %td= notification.description
+        %td= notification.status 
+        %td= link_to "Info about #{notification.title}", notification_path(notification)
+
+%br
+= link_to 'Add notification', new_notification_path
+= link_to "Home Page" , root_path

@@ -58,7 +58,11 @@ gem 'jquery-rails'
 
 gem 'gon'
 
+# GAB google-calendar API
 gem 'google-api-client'
+
+#printare calendario
+gem "simple_calendar", "~> 2.0"
 
 group :development, :test do
   gem 'rspec-rails'
