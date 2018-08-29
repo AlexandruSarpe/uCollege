@@ -48,3 +48,11 @@ unofficialev = UnofficialEvent.create creator_id: stud.id, name: 'unofficial eve
 
 officialev = OfficialEvent.create creator_id: sec.id, name: 'official event', place: 'location2',
                                   notes: 'notes', date: Time.now
+
+Notification.create title: 'no hot water', description: 'no hot  water on the 5th floor',status: 1
+
+Course.create name: "Enrollable course", begin_year: 2018, end_year: 2019, course_type: "Bachelor", material: "1AXuG5rCnT7ntEengJPybkJoL8kNmm19f"
+
+Course.create name: "old course", begin_year: 1974, end_year: 1975, course_type: "Master", material: "19tjINDujBanBPr9CZbYSWIfh0QkVqjVU"
+
+Course.create name: "almost finished course", begin_year: 2017, end_year: 2018, course_type: "Preparatory", material: "1fYIkAMVaazLARz0RlqXcoesZRU0zr5J9"

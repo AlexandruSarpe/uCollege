@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @notification = Notification.all.order('created_at DESC')
+        @notification = Notification.all.order('status DESC')
     end
 
     def new
