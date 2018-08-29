@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_30_155752) do
+ActiveRecord::Schema.define(version: 2018_08_17_140530) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -41,6 +41,19 @@ ActiveRecord::Schema.define(version: 2018_07_30_155752) do
     t.index ["student_id", "course_id"], name: "index_enrollments_on_student_id_and_course_id", unique: true
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "place"
+    t.datetime "date"
+    t.string "notes"
+    t.string "type"
+    t.integer "creator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_events_on_creator_id"
+    t.index ["name", "place", "date"], name: "index_events_on_name_and_place_and_date", unique: true
+  end
+
   create_table "forms", force: :cascade do |t|
     t.date "dateStart"
     t.date "dateEnd"
@@ -64,6 +77,14 @@ ActiveRecord::Schema.define(version: 2018_07_30_155752) do
     t.datetime "updated_at", null: false
     t.index ["canteen_id"], name: "index_menus_on_canteen_id"
     t.index ["date", "mealType"], name: "index_menus_on_date_and_mealType", unique: true
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reservations", force: :cascade do |t|
