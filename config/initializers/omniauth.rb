@@ -11,7 +11,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            ENV['Google_Client_Secret'], scope: 'profile, email', access_type: 'online'
 
   provider :google_oauth2_drive, ENV['Google_Client_Id'],
-           ENV['Google_Client_Secret'], scope: 'email, https://www.googleapis.com/auth/drive , https://www.googleapis.com/auth/calendar', access_type: 'offline'
+           ENV['Google_Client_Secret'], scope: 'email, https://www.googleapis.com/auth/drive', access_type: 'offline'
 end
 
 OmniAuth.config.on_failure = proc {|env|
