@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_140530) do
     t.datetime "updated_at", null: false
     t.index ["current_owner_id"], name: "index_books_on_current_owner_id"
     t.index ["owner_id"], name: "index_books_on_owner_id"
+    t.index ["title", "author"], name: "index_books_on_title_and_author", unique: true
   end
 
   create_table "courses", force: :cascade do |t|
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_140530) do
     t.datetime "updated_at", null: false
     t.index ["menu_id"], name: "index_reservations_on_menu_id"
     t.index ["student_id"], name: "index_reservations_on_student_id"
+    t.index ["typeReservation", "menu_id", "student_id"], name: "unique reservations", unique: true
   end
 
   create_table "tokens", force: :cascade do |t|

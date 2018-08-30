@@ -28,6 +28,11 @@ class BooksController < ApplicationController
     parametri[:owner_id] = current_user.id
     parametri[:current_owner_id] = current_user.id
     @book = Book.new(parametri)
+		unless Book.all.where(author: @book.author, title:@book.title).first.nil?
+			flash[:warning]='already existing book'
+			redirect_to books_path
+			return
+		end
 
     if @book.save
       redirect_to books_path
