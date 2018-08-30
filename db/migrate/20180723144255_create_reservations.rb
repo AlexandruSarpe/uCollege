@@ -14,5 +14,6 @@ class CreateReservations < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+		add_index :reservations, %i[menu student], unique: true
   end
 end
