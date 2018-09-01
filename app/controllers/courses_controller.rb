@@ -93,7 +93,10 @@ class CoursesController < ApplicationController
     if (Time.now.month < 9) && (Time.now.month >= 1)
       Course.all.where("begin_year=#{Time.now.year - 1}")
           .order('course_type DESC, begin_year DESC, end_year DESC') - enrolled_current_courses(student_id)
-    end
+		else
+			Course.all.where("begin_year=#{Time.now.year}")
+			.order('course_type DESC, begin_year DESC, end_year DESC') - enrolled_current_courses(student_id)
+		end
   end
 
   def enrolled_current_courses(student_id)
